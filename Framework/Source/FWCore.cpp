@@ -57,6 +57,7 @@ int FWCore::Run()
     MSG message;
     bool done = false;
 
+<<<<<<< HEAD
     //initialize mesh
 
     GLuint vbo = 0;
@@ -66,6 +67,8 @@ int FWCore::Run()
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glBufferData(GL_ARRAY_BUFFER, 24, &values[0], GL_STATIC_DRAW);
     
+=======
+>>>>>>> 5370617a8c3c14a5b2155df3a67e1d80888e2f52
     while( !done )
     {
         if( PeekMessage( &message, nullptr, 0, 0, PM_REMOVE ) )
@@ -82,6 +85,7 @@ int FWCore::Run()
         }
         else
         {
+<<<<<<< HEAD
             glPointSize(20);
             glLineWidth(20);
             glClearColor( 0, 255, 255, 0 );
@@ -93,6 +97,11 @@ int FWCore::Run()
             glVertexAttribPointer(0, 2, GL_FLOAT, false, 8, (void*)0);
             glDrawArrays(GL_TRIANGLES, 0, 3);
 
+=======
+            glClearColor( 0, 255, 0, 255 );
+            glClear( GL_COLOR_BUFFER_BIT );
+
+>>>>>>> 5370617a8c3c14a5b2155df3a67e1d80888e2f52
             SwapBuffers();
 
             // Backup the state of the keyboard and mouse.
