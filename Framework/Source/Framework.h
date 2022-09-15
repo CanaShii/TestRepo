@@ -8,3 +8,4 @@
 #include "CoreHeaders.h"
 
 #include "FWCore.h"
+#include "GameCore.h"

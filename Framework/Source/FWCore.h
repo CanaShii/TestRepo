@@ -12,6 +12,7 @@
 namespace fw {
 
 class MyGLContext;
+class GameCore;
 
 class FWCore
 {
@@ -20,7 +21,7 @@ public:
     virtual ~FWCore();
 
     bool Init(int width, int height);
-    int Run();
+    int Run(GameCore* pGameCore);
     void Shutdown();
 
     void SetWindowSize(int width, int height);
@@ -62,6 +63,8 @@ protected:
     bool m_OldMouseButtonStates[3] = {};
     bool m_WindowIsActive = false;
     bool m_FullscreenMode = false;
+
+
 };
 
 } // namespace fw
