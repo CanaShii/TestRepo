@@ -10,12 +10,15 @@ project "GameProject"
 	files {
 		"Game/Source/**.cpp",
 		"Game/Source/**.h",
+		"Game/Data/Shaders/**.vert",
+		"Game/Data/Shaders/**.frag",
 		"premake5.lua"
 	}
 	includedirs { "Framework/Source" }
 	links { "Framework", "opengl32" }
+	debugdir "Game"
 
-	project "Framework"
+project "Framework"
 	kind "StaticLib"
 	files {
 		"Framework/Source/**.cpp",

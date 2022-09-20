@@ -1,17 +1,16 @@
 #include "Framework.h"
 #include "Game.h"
 
-int WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nShowCmd)
+int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
-    fw::FWCore Core;
+    fw::FWCore core;
 
-    Core.Init(800 , 800);
+    core.Init( 800, 800 );
 
-    Game* pGame = new Game;
-    Core.Run(pGame);
-    delete pGame;
+    Game game;
+    core.Run( &game );
 
-    Core.Shutdown();
+    core.Shutdown();
 
     return 0;
 }

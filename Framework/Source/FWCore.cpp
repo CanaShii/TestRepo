@@ -14,6 +14,7 @@
 #include "GL/WGLExtensions.h"
 #include "GL/MyGLContext.h"
 #include "GameCore.h"
+#include "Utility/Utility.h"
 
 namespace fw {
 
@@ -52,11 +53,14 @@ bool FWCore::Init(int width, int height)
     return true;
 }
 
-int FWCore::Run(GameCore* pGameCore)
+int FWCore::Run(GameCore* game)
 {
     // Main loop.
     MSG message;
     bool done = false;
+
+    double previousTime = GetHighPercisionTime();
+
 
     while( !done )
     {
@@ -74,13 +78,13 @@ int FWCore::Run(GameCore* pGameCore)
         }
         else
         {
-            glClearColor(0, 255, 0, 255);
-            glClear(GL_COLOR_BUFFER_BIT);
-            pGameCore->StartFrame();
-            pGameCore->Update();         
-            pGameCore->Draw();
+            double currentTime = GetHighPercisionTime();
+            float deltaTime = (float)(currentTime - previousTime);
+            previousTime = currentTime;
 
-           
+            game->StartFrame();
+            game->Update(deltaTime);
+            game->Draw();
 
             SwapBuffers();
 
