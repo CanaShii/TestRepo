@@ -59,8 +59,7 @@ int FWCore::Run(GameCore* game)
     MSG message;
     bool done = false;
 
-    double previousTime = GetHighPercisionTime();
-
+    double previousTime = GetHighPrecisionTime();
 
     while( !done )
     {
@@ -78,12 +77,12 @@ int FWCore::Run(GameCore* game)
         }
         else
         {
-            double currentTime = GetHighPercisionTime();
+            double currentTime = GetHighPrecisionTime();
             float deltaTime = (float)(currentTime - previousTime);
             previousTime = currentTime;
 
-            game->StartFrame();
-            game->Update(deltaTime);
+            game->StartFrame( deltaTime );
+            game->Update( deltaTime );
             game->Draw();
 
             SwapBuffers();

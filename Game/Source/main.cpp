@@ -5,9 +5,9 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 {
     fw::FWCore core;
 
-    core.Init( 800, 800 );
+    core.Init( 1280, 720 );
 
-    Game game;
+    Game game( core );
     core.Run( &game );
 
     core.Shutdown();

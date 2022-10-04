@@ -1,33 +1,32 @@
 #include "CoreHeaders.h"
 #include "Utility.h"
 
-
-
 namespace fw {
 
-double GetHighPercisionTime()
+double GetHighPrecisionTime()
 {
- unsigned __int64 freq;
- unsigned __int64 time;
+    unsigned __int64 freq;
+    unsigned __int64 time;
 
- QueryPerformanceFrequency((LARGE_INTEGER*)&freq);
- QueryPerformanceCounter((LARGE_INTEGER*)&time);
+    QueryPerformanceFrequency((LARGE_INTEGER*)&freq);
+    QueryPerformanceCounter((LARGE_INTEGER*)&time);
 
- double timeSeconds = (double)time / freq;
+    double timeseconds = (double)time / freq;
 
- return timeSeconds;
+    return timeseconds;
 }
+
 void OutputMessage(const char* message, ...)
 {
 #define MAX_MESSAGE 1024
     char szBuff[MAX_MESSAGE];
     va_list arg;
     va_start(arg, message);
-    vsnprintf_s(szBuff, sizeof(szBuff), _TRUNCATE, message, arg);
+    vsnprintf_s( szBuff, sizeof(szBuff), _TRUNCATE, message, arg );
     va_end(arg);
 
-    szBuff[MAX_MESSAGE - 1] = 0; // vsnprintf_s might do this, but docs are unclear.
-    OutputDebugString(szBuff);
+    szBuff[MAX_MESSAGE-1] = 0; // vsnprintf_s might do this, but docs are unclear.
+    OutputDebugString( szBuff );
 }
 
 char* LoadCompleteFile(const char* filename, long* length)
@@ -35,25 +34,25 @@ char* LoadCompleteFile(const char* filename, long* length)
     char* filecontents = 0;
 
     FILE* filehandle;
-    errno_t error = fopen_s(&filehandle, filename, "rb");
+    errno_t error = fopen_s( &filehandle, filename, "rb" );
 
-    if (filehandle)
+    if( filehandle )
     {
-        fseek(filehandle, 0, SEEK_END);
-        long size = ftell(filehandle);
-        rewind(filehandle);
+        fseek( filehandle, 0, SEEK_END );
+        long size = ftell( filehandle );
+        rewind( filehandle );
 
-        filecontents = new char[size + 1];
-        fread(filecontents, size, 1, filehandle);
+        filecontents = new char[size+1];
+        fread( filecontents, size, 1, filehandle );
         filecontents[size] = 0;
 
-        if (length)
+        if( length )
             *length = size;
 
-        fclose(filehandle);
+        fclose( filehandle );
     }
 
     return filecontents;
 }
-}
 
+}

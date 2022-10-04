@@ -3,18 +3,22 @@
 class Game : public fw::GameCore
 {
 public:
-    Game();
+    Game(fw::FWCore& core);
     virtual ~Game();
 
-    virtual void StartFrame() override;
+    virtual void StartFrame(float deltaTime) override;
     virtual void Update(float deltaTime) override;
     virtual void Draw() override;
-    
-    
 
 protected:
+    fw::FWCore& m_Framework;
+    fw::ImGuiManager* m_pImGuiManager = nullptr;
+
     GLuint m_VBO = 0;
-    fw::ShaderProgram* m_pBasicShader;
-    float m_UniformXValue;
-    float m_UniformYValue;
+
+    fw::ShaderProgram* m_pBasicShader = nullptr;
+    fw::ShaderProgram* m_pSecondShader = nullptr;
+
+    float m_PosX = 0.0f;
+    float m_ElapsedTime = 0.0f;
 };
