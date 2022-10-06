@@ -57,6 +57,8 @@ protected:
     HINSTANCE m_hInstance = nullptr;
     MyGLContext* m_pMyGLContext = nullptr;
 
+    GameCore* m_Game = nullptr;
+
     bool m_KeyStates[256] = {};
     bool m_MouseButtonStates[3] = {};
     bool m_OldKeyStates[256] = {};

@@ -14,7 +14,10 @@
 #include "GL/WGLExtensions.h"
 #include "GL/MyGLContext.h"
 #include "GameCore.h"
+#include "FWEvent.h"
+#include "InputEvent.h"
 #include "Utility/Utility.h"
+
 
 namespace fw {
 
@@ -53,8 +56,10 @@ bool FWCore::Init(int width, int height)
     return true;
 }
 
-int FWCore::Run(GameCore* game)
+int FWCore::Run(GameCore* pGameCore)
 {
+
+    m_Game = pGameCore;
     // Main loop.
     MSG message;
     bool done = false;
@@ -81,9 +86,9 @@ int FWCore::Run(GameCore* game)
             float deltaTime = (float)(currentTime - previousTime);
             previousTime = currentTime;
 
-            game->StartFrame( deltaTime );
-            game->Update( deltaTime );
-            game->Draw();
+            pGameCore->StartFrame( deltaTime );
+            pGameCore->Update( deltaTime );
+            pGameCore->Draw();
 
             SwapBuffers();
 
@@ -430,6 +435,9 @@ LRESULT CALLBACK FWCore::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
     case WM_KEYUP:
         {
             pFWCore->m_KeyStates[wParam] = false;
+
+            FWEvent* pEvent = new InputEvent(DeviceType::Keyboard, InputState::Pressed, wParam);
+            pFWCore->m_Game->GetEventManager()->AddEvent(pEvent);
         }
         return 0;
 

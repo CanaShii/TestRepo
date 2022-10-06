@@ -39,6 +39,9 @@ Game::~Game()
 void Game::StartFrame(float deltaTime)
 {
     m_pImGuiManager->StartFrame( deltaTime );
+
+    m_pEventManager->ProcessEvents();
+
     ImGui::ShowDemoWindow();
 }
 
