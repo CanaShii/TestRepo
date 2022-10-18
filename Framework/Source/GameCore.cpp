@@ -1,20 +1,24 @@
 #include "CoreHeaders.h"
 #include "GameCore.h"
+#include "FWEventManager.h"
 
-fw::GameCore::GameCore()
-{
-    m_pEventManager = new FWEventManager(this);
-}
+namespace fw {
 
-fw::GameCore::~GameCore()
-{
-    delete m_pEventManager;
-}
+    GameCore::GameCore()
+    {
+        m_pEventManager = new FWEventManager(this);
+    }
 
+    GameCore::~GameCore()
+    {
+        delete m_pEventManager;
+    }
 
-fw::FWEventManager* fw::GameCore::GetEventManager()
-{
-    return m_pEventManager;
+    FWEventManager* GameCore::GetEventManager()
+    {
+        return nullptr;
+    }
+
 }
 
 

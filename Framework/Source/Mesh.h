@@ -1,38 +1,54 @@
 #pragma once
 #include "GameCore.h"
 #include "CoreHeaders.h"
-#include <Framework.h>
-#include "vec2.h"
+#include <vector>
 
 
-struct VertexFormat
-{
-	fw::vec2 Pos;
-	unsigned char r, g, b, a;
-};
+
+
+
 
 namespace fw {
+
+   struct VertexFormat
+   {
+	   fw::vec2 Pos;
+	   unsigned char r, g, b, a;
+   };
+
+   enum class PrimitiveTypes
+   {
+       GLPOINTS,
+	   GLLINES,
+       GLTRIANGLE
+   };
+
+
+   class ShaderProgram;
+
+   class Mesh
+   {
+   public:
+	   Mesh(std::vector<VertexFormat>& vertex, PrimitiveTypes mode);
+	   ~Mesh();
+
+	   void drawMesh(ShaderProgram* shader, vec2 scale, float angle, vec2 pos);
+
+   protected:
 	
-class Mesh
-{
-public:
-	Mesh(VertexFormat vertex[], GLenum mode);
-	~Mesh();
+	   float m_ElapsedTime = 0.0f;
 
-	void drawMesh(fw::ShaderProgram* shader, vec2 scale, float angle, vec2 pos);
+	   std::vector<VertexFormat> m_Format;
+	
+	   //PrimitiveTypes m_Mode;
 
-protected:
-	fw::ShaderProgram* m_pBasicShader = nullptr;
+	   int m_NumOfObjects = 0;
 
-	float m_ElapsedTime = 0.0f;
+	   PrimitiveTypes m_Mode;
 
-	int m_NumOfObjects = 0;
+	   GLuint m_VBO = 0;
 
-	GLenum m_Mode;
-
-	GLuint m_VBO = 0;
-
-	//fw::FWCore& m_Framework;
-};
+	   //fw::FWCore& m_Framework;
+   };
 
 }

@@ -1,7 +1,9 @@
 #pragma once
-#include "../../build/GameObject.h"
 #include <vector>
+#include "GameCore.h"
 
+class fw::Mesh;
+class GameObject;
 class Game : public fw::GameCore
 {
 public:
@@ -12,19 +14,20 @@ public:
     virtual void Update(float deltaTime) override;
     virtual void Draw() override;
 
+    virtual void Game::OnEvent(fw::FWEvent* event) override;
+        
+
 protected:
     fw::FWCore& m_Framework;
     fw::ImGuiManager* m_pImGuiManager = nullptr;
 
-    GameObject* m_GameObject;
+    GLuint m_VBO = 0;
 
-     
-
-    //GLuint m_VBO = 0;
-
-    //fw::ShaderProgram* m_pBasicShader = nullptr;
-    fw::ShaderProgram* m_pSecondShader = nullptr;
-
+    fw::ShaderProgram* m_pBasicShader = nullptr;
+    fw::Mesh* m_PlayerMesh = nullptr;
+    fw::Mesh* m_EnemyMesh = nullptr;
+    std::vector<GameObject*> m_GameObjects;
     float m_PosX = 0.0f;
     float m_ElapsedTime = 0.0f;
+    float m_Color[4] = { 1, 1, 1, 1 };
 };

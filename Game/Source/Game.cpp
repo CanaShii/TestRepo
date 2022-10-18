@@ -1,35 +1,76 @@
 #include "Framework.h"
 #include "Game.h"
+#include "GameObject.h"
+#include <vector>
 
 Game::Game(fw::FWCore& core) : m_Framework(core)
 {
     m_pImGuiManager = new fw::ImGuiManager(&core);
 
-    fw::vec2 Point1;
-    Point1.SetPos(0.5f, 0.5f);
-    fw::vec2 Point2;
-    Point2.SetPos(-1.0f, -0.5f);
-    fw::vec2 Point3;
-    Point3.SetPos(1.5F, -0.5F);
-    VertexFormat Points[3] = {
-       { Point1 , 255, 255, 255, 255 },
-        { Point2 , 255, 255, 255, 255 },
-        { Point3 , 255,255,255,255} 
+    fw::vec2 P1 = { 0.5f, 0.5f };
+    fw::vec2 P2 = { -1.0f, -0.5f };
+    fw::vec2 P3 = { 1.5F, -0.5F };
+    std::vector<fw::VertexFormat> Player = {
+       { P1 , 255, 255, 255, 255 },
+       { P2 , 255, 255, 255, 255 },
+       { P3 , 255, 255, 255, 255 }, 
     };
-    
+
+    glGenBuffers(1, &m_VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+    glBufferData(GL_ARRAY_BUFFER, 3 * sizeof(fw::VertexFormat), &Player, GL_STATIC_DRAW);
+
+    //m_PlayerMesh = new fw::Mesh(Player, fw::PrimitiveTypes::GLTRIANGLE);
+
+    //m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 1.0f , 1.0f }, 0.0f));
     
     // Load the basic shader.
+    m_pBasicShader = new fw::ShaderProgram("Data/Shaders/Basic.vert", "Data/Shaders/Angels.frag");
+
+    fw::vec2 E1 = { -0.5f, 0.0f };
+    fw::vec2 E2 = { 0.0f, 0.0f };
+    fw::vec2 E3 = { 0.5F, 0.5F };
+    fw::vec2 E4 = { 1.0F, -0.25F };
+    fw::vec2 E5 = { -1.0F, 0.5F };
+
+    std::vector<fw::VertexFormat> Enemies = {
+       { E1 , 255, 255, 255, 255 },
+       { E2 , 255, 255, 255, 255 },
+       { E3 , 255, 255, 255, 255 },
+       { E4 , 255, 255, 255, 255 },
+       { E5 , 255, 255, 255, 255 },
+    };
+
+    m_PlayerMesh = new fw::Mesh(Player, fw::PrimitiveTypes::GLTRIANGLE);
+
+    m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 1.0f , 1.0f }, 0.0f));
+
+    m_EnemyMesh = new fw::Mesh(Player, fw::PrimitiveTypes::GLLINES);
+
+    for (int i = 0; i < 3; i++)
+    {
+        m_GameObjects.push_back(new GameObject(m_EnemyMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 0.0f , 0.5f + (i + 1) }, 0.0f));
+    }
+   
     
-   // m_pSecondShader = new fw::ShaderProgram("Data/Shaders/Basic.vert", "Data/Shaders/Angels.frag");
+
+
+
 }
 
 Game::~Game()
 {
-    //delete m_pBasicShader;
+    delete m_pBasicShader;
 
     //delete m_pSecondShader;
+    for (auto GameObjects: m_GameObjects)
+    {
+        delete GameObjects;
+    }
 
     delete m_pImGuiManager;
+    delete m_PlayerMesh;
+    delete m_EnemyMesh;
 }
 
 void Game::StartFrame(float deltaTime)
@@ -43,6 +84,20 @@ void Game::StartFrame(float deltaTime)
 
 void Game::Update(float deltaTime)
 {
+    if (ImGui::TreeNode("This is a tree node"))
+    {
+        ImGui::DragFloat("Position X", &m_PosX, 0.01f);
+
+        if (ImGui::Button("Reset"))
+        {
+            m_PosX = 0.0f;
+        }
+
+        ImGui::ColorEdit3("Color", &m_Color[0]);
+
+        ImGui::TreePop();
+    }
+
     ImGui::DragFloat( "Position X", &m_PosX, 0.01f );
 
     m_ElapsedTime += deltaTime;
@@ -57,8 +112,19 @@ void Game::Update(float deltaTime)
 
 void Game::Draw()
 {
-   
+    glPointSize(20);
+    glClearColor(0, 0, 0.2f, 1);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    for (auto GameObjects : m_GameObjects)
+    {
+        GameObjects->Draw();
+    }
     
 
-    //m_pImGuiManager->EndFrame();
+    m_pImGuiManager->EndFrame();
+}
+
+void Game::OnEvent(fw::FWEvent* event)
+{
 }

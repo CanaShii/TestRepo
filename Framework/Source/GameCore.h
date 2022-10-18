@@ -14,6 +14,8 @@ public:
     virtual void StartFrame(float deltaTime) = 0;
     virtual void Update(float deltaTime) = 0;
     virtual void Draw() = 0;
+    virtual void OnEvent(FWEvent* event) = 0;
+
 protected:
     FWEventManager* m_pEventManager = nullptr;
 };

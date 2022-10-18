@@ -26,3 +26,5 @@
 
 #include "GL/GLExtensions.h"
 #include "GL/WGLExtensions.h"
+#include "vec2.h"
+
