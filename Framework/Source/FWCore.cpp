@@ -32,6 +32,7 @@ namespace fw {
 
 FWCore::FWCore()
 {
+    vec2::test();
 }
 
 FWCore::~FWCore()

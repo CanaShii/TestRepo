@@ -31,7 +31,7 @@ void fw::Mesh::drawMesh(ShaderProgram* shader,vec2 scale,float angle, vec2 pos)
     GLint u_Offset = glGetUniformLocation(shader->GetProgram(), "u_Offset");
     glUniform2f(u_Offset, pos.X, pos.Y);
 
-    GLint u_Rotation = glGetUniformLocation(shader->GetProgram(), "u_Offset");
+    GLint u_Rotation = glGetUniformLocation(shader->GetProgram(), "u_Rotation");
     glUniform1f(u_Rotation, angle);
 
     GLint u_Color = glGetUniformLocation(shader->GetProgram(), "u_Color");
@@ -41,10 +41,10 @@ void fw::Mesh::drawMesh(ShaderProgram* shader,vec2 scale,float angle, vec2 pos)
     glUniform2f(u_Resolution, ImGui::GetWindowWidth(), ImGui::GetWindowHeight());
 
     GLint iGlobalTime = glGetUniformLocation(shader->GetProgram(), "iGlobalTime");
-    glUniform1f(iGlobalTime, m_ElapsedTime);
+    glUniform1f(iGlobalTime, 0.0f);
 
     GLint iDate = glGetUniformLocation(shader->GetProgram(), "iDate");
-    glUniform4f(iDate, 2022.0f, 10.0f, 04.0f, m_ElapsedTime);
+    glUniform4f(iDate, 2022.0f, 10.0f, 04.0f, 0.0f);
 
     GLint iResolution = glGetUniformLocation(shader->GetProgram(), "iResolution");
     glUniform3f(iResolution, ImGui::GetWindowWidth(), ImGui::GetWindowHeight(), 1.0f);
@@ -54,7 +54,11 @@ void fw::Mesh::drawMesh(ShaderProgram* shader,vec2 scale,float angle, vec2 pos)
 
     GLint a_Position = glGetAttribLocation(shader->GetProgram(), "a_Position");
     glEnableVertexAttribArray(a_Position);
-    glVertexAttribPointer(a_Position, 4, GL_UNSIGNED_BYTE, true, sizeof(VertexFormat), (void*)8);
+    glVertexAttribPointer(a_Position, 2, GL_FLOAT, false, 12, 0);
+
+    GLint a_Color = glGetAttribLocation(shader->GetProgram(), "a_Color");
+    glEnableVertexAttribArray(a_Color);
+    glVertexAttribPointer(a_Color, 4, GL_UNSIGNED_BYTE, true, 12, (void*)8);
 
 
     if (m_Mode == PrimitiveTypes::GLLINES)

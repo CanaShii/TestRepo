@@ -6,7 +6,7 @@ GameObject::GameObject(fw::Mesh* mesh, fw::vec2 scale, fw::vec2 pos, float angle
 	m_Position(pos),
 	m_Angle(angle)
 {
-	m_Shader = new fw::ShaderProgram("Data/Shaders/Basic.vert", "Data/Shaders/Angels.frag");
+	m_Shader = new fw::ShaderProgram("Data/Shaders/Basic.vert", "Data/Shaders/Basic.frag");
 }
 
 GameObject::~GameObject()

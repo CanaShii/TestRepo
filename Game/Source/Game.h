@@ -4,6 +4,9 @@
 
 class fw::Mesh;
 class GameObject;
+
+typedef fw::vec2 vec2;
+
 class Game : public fw::GameCore
 {
 public:
@@ -27,7 +30,7 @@ protected:
     fw::Mesh* m_PlayerMesh = nullptr;
     fw::Mesh* m_EnemyMesh = nullptr;
     std::vector<GameObject*> m_GameObjects;
-    float m_PosX = 0.0f;
+    vec2 m_Pos = { 0,0 };
     float m_ElapsedTime = 0.0f;
     float m_Color[4] = { 1, 1, 1, 1 };
 };

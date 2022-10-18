@@ -7,50 +7,51 @@ Game::Game(fw::FWCore& core) : m_Framework(core)
 {
     m_pImGuiManager = new fw::ImGuiManager(&core);
 
-    fw::vec2 P1 = { 0.5f, 0.5f };
-    fw::vec2 P2 = { -1.0f, -0.5f };
-    fw::vec2 P3 = { 1.5F, -0.5F };
+    vec2 P1 = { -1.0f, -1.0f };
+    vec2 P2 = { 1.0f, -1.0f };
+    vec2 P3 = { 0.0F, 1.0F };
     std::vector<fw::VertexFormat> Player = {
-       { P1 , 255, 255, 255, 255 },
-       { P2 , 255, 255, 255, 255 },
-       { P3 , 255, 255, 255, 255 }, 
+       { P1 , 255, 0, 0, 0 },
+       { P2 , 255, 0, 0, 0 },
+       { P3 , 255, 0, 0, 0 }, 
     };
 
     glGenBuffers(1, &m_VBO);
     glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-    glBufferData(GL_ARRAY_BUFFER, 3 * sizeof(fw::VertexFormat), &Player, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 3 * sizeof(fw::VertexFormat), Player.data(), GL_STATIC_DRAW);
 
     //m_PlayerMesh = new fw::Mesh(Player, fw::PrimitiveTypes::GLTRIANGLE);
 
     //m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 1.0f , 1.0f }, 0.0f));
     
     // Load the basic shader.
-    m_pBasicShader = new fw::ShaderProgram("Data/Shaders/Basic.vert", "Data/Shaders/Angels.frag");
+   // m_pBasicShader = new fw::ShaderProgram("Data/Shaders/Basic.vert", "Data/Shaders/Basic.frag");
 
-    fw::vec2 E1 = { -0.5f, 0.0f };
-    fw::vec2 E2 = { 0.0f, 0.0f };
-    fw::vec2 E3 = { 0.5F, 0.5F };
-    fw::vec2 E4 = { 1.0F, -0.25F };
-    fw::vec2 E5 = { -1.0F, 0.5F };
+    vec2 E1 = { -0.5f, 0.0f };
+    vec2 E2 = { 0.0f, 0.0f };
+    vec2 E3 = { 0.5F, 0.5F };
+    vec2 E4 = { 1.0F, -0.25F };
+    vec2 E5 = { -1.0F, 0.5F };
 
     std::vector<fw::VertexFormat> Enemies = {
-       { E1 , 255, 255, 255, 255 },
-       { E2 , 255, 255, 255, 255 },
-       { E3 , 255, 255, 255, 255 },
-       { E4 , 255, 255, 255, 255 },
-       { E5 , 255, 255, 255, 255 },
+       { E1 , 255, 0, 0, 0 },
+       { E2 , 255, 0, 0, 0 },
+       { E3 , 255, 0, 0, 0 },
+       { E4 , 255, 0, 0, 0 },
+       { E5 , 255, 0, 0, 0 },
     };
 
     m_PlayerMesh = new fw::Mesh(Player, fw::PrimitiveTypes::GLTRIANGLE);
 
-    m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 1.0f , 1.0f }, 0.0f));
+    m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 5.0f , 5.0f }, fw::vec2{ 1.0f , 1.0f }, 0.0f));
 
-    m_EnemyMesh = new fw::Mesh(Player, fw::PrimitiveTypes::GLLINES);
 
-    for (int i = 0; i < 3; i++)
-    {
-        m_GameObjects.push_back(new GameObject(m_EnemyMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 0.0f , 0.5f + (i + 1) }, 0.0f));
-    }
+   // m_EnemyMesh = new fw::Mesh(Player, fw::PrimitiveTypes::GLLINES);
+
+    //for (int i = 0; i < 3; i++)
+    //{
+       // m_GameObjects.push_back(new GameObject(m_EnemyMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 0.0f , 0.5f + (i + 1) }, 0.0f));
+    //}
    
     
 
@@ -86,11 +87,11 @@ void Game::Update(float deltaTime)
 {
     if (ImGui::TreeNode("This is a tree node"))
     {
-        ImGui::DragFloat("Position X", &m_PosX, 0.01f);
+        ImGui::DragFloat("Position X", &m_Pos.X, 0.01f);
 
         if (ImGui::Button("Reset"))
         {
-            m_PosX = 0.0f;
+            m_Pos.X = 0.0f;
         }
 
         ImGui::ColorEdit3("Color", &m_Color[0]);
@@ -98,7 +99,7 @@ void Game::Update(float deltaTime)
         ImGui::TreePop();
     }
 
-    ImGui::DragFloat( "Position X", &m_PosX, 0.01f );
+    ImGui::DragFloat( "Position X", &m_Pos.X, 0.01f );
 
     m_ElapsedTime += deltaTime;
 
@@ -106,7 +107,7 @@ void Game::Update(float deltaTime)
 
     if (ImGui::Button("Reset"))
     {
-        m_PosX = 0.0f;
+        m_Pos.X = 0.0f;
     }
 }
 
