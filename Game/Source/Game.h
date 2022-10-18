@@ -1,4 +1,6 @@
 #pragma once
+#include "../../build/GameObject.h"
+#include <vector>
 
 class Game : public fw::GameCore
 {
@@ -14,9 +16,13 @@ protected:
     fw::FWCore& m_Framework;
     fw::ImGuiManager* m_pImGuiManager = nullptr;
 
-    GLuint m_VBO = 0;
+    GameObject* m_GameObject;
 
-    fw::ShaderProgram* m_pBasicShader = nullptr;
+     
+
+    //GLuint m_VBO = 0;
+
+    //fw::ShaderProgram* m_pBasicShader = nullptr;
     fw::ShaderProgram* m_pSecondShader = nullptr;
 
     float m_PosX = 0.0f;

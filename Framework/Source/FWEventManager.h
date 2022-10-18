@@ -15,7 +15,7 @@ public:
      void ProcessEvents();
 
 protected:
-    std::queue<FWEvent*> m_Queue;
+    //std::queue<FWEvent*> m_Queue;
     GameCore* m_pGame;
 
 

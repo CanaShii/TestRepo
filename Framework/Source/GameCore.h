@@ -6,8 +6,8 @@ namespace fw {
 class GameCore
 {
 public:
-    GameCore() {}
-    virtual ~GameCore() {}
+    GameCore();
+    virtual ~GameCore();
 
     FWEventManager* GetEventManager();
     
