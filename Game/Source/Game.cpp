@@ -43,7 +43,8 @@ Game::Game(fw::FWCore& core) : m_Framework(core)
 
     m_PlayerMesh = new fw::Mesh(Player, fw::PrimitiveTypes::GLTRIANGLE);
 
-    m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 5.0f , 5.0f }, fw::vec2{ 1.0f , 1.0f }, 0.0f));
+    m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 1.0f , 1.0f }, 0.0f));
+    //m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.5f , 1.5f }, fw::vec2{ 1.0f , 1.0f }, 20.0f));
 
 
    // m_EnemyMesh = new fw::Mesh(Player, fw::PrimitiveTypes::GLLINES);

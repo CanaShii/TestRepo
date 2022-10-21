@@ -7,7 +7,7 @@ fw::Mesh::Mesh(std::vector<VertexFormat>& vertex, PrimitiveTypes mode)
 {
     glGenBuffers(1, &m_VBO);
     glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-    glBufferData(GL_ARRAY_BUFFER, 3 * sizeof(VertexFormat), &vertex, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 3 * sizeof(VertexFormat), &vertex[0], GL_STATIC_DRAW);
 
     m_Mode = mode;
     m_Format = vertex;
