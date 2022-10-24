@@ -7,7 +7,7 @@ fw::Mesh::Mesh(std::vector<VertexFormat>& vertex, PrimitiveTypes mode)
 {
     glGenBuffers(1, &m_VBO);
     glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-    glBufferData(GL_ARRAY_BUFFER, 3 * sizeof(VertexFormat), &vertex[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertex.size() * sizeof(VertexFormat), &vertex[0], GL_STATIC_DRAW);
 
     m_Mode = mode;
     m_Format = vertex;
@@ -63,7 +63,7 @@ void fw::Mesh::drawMesh(ShaderProgram* shader,vec2 scale,float angle, vec2 pos)
 
     if (m_Mode == PrimitiveTypes::GLLINES)
     {
-        glDrawArrays(GL_LINE_LOOP, 0, m_Format.size());
+        glDrawArrays(GL_LINES, 0, m_Format.size());
     }
     else if (m_Mode == PrimitiveTypes::GLPOINTS)
     {

@@ -12,20 +12,25 @@ Game::Game(fw::FWCore& core) : m_Framework(core)
     vec2 P3 = { 0.0F, 1.0F };
     std::vector<fw::VertexFormat> Player = {
        { P1 , 255, 0, 0, 0 },
-       { P2 , 255, 0, 0, 0 },
-       { P3 , 255, 0, 0, 0 }, 
+       { P2 , 0, 255, 0, 0 },
+       { P3 , 0, 0, 255, 0 },
     };
 
     glGenBuffers(1, &m_VBO);
     glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
     glBufferData(GL_ARRAY_BUFFER, 3 * sizeof(fw::VertexFormat), Player.data(), GL_STATIC_DRAW);
 
-    //m_PlayerMesh = new fw::Mesh(Player, fw::PrimitiveTypes::GLTRIANGLE);
+    m_PlayerMesh = new fw::Mesh(Player, fw::PrimitiveTypes::GLTRIANGLE);
 
-    //m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 1.0f , 1.0f }, 0.0f));
-    
-    // Load the basic shader.
-   // m_pBasicShader = new fw::ShaderProgram("Data/Shaders/Basic.vert", "Data/Shaders/Basic.frag");
+    m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 1.0f , 1.0f }, 0.0f));
+    m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 1.2f , 1.2f }, 10.0f));
+    m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 1.4f , 1.0f }, 20.0f));
+    m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 0.3f , 0.3f }, 50.0f));
+    m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 0.7f , -1.0f }, 40.0f));
+    m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 1.2f , -1.0f }, 40.0f));
+    m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 1.0f , 3.0f }, 19.0f));
+    m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 2.0f , 2.0f }, 55.0f));
+    //All 8 Player Objects
 
     vec2 E1 = { -0.5f, 0.0f };
     vec2 E2 = { 0.0f, 0.0f };
@@ -34,25 +39,24 @@ Game::Game(fw::FWCore& core) : m_Framework(core)
     vec2 E5 = { -1.0F, 0.5F };
 
     std::vector<fw::VertexFormat> Enemies = {
-       { E1 , 255, 0, 0, 0 },
-       { E2 , 255, 0, 0, 0 },
-       { E3 , 255, 0, 0, 0 },
-       { E4 , 255, 0, 0, 0 },
-       { E5 , 255, 0, 0, 0 },
+    { E1 , 255, 0, 255, 0 },
+    { E2 , 255, 255, 0, 0 },
+    { E3 , 255, 0, 255, 0 },
+    { E4 , 255, 255, 0, 0 },
+    { E5 , 255, 0, 255, 0 },
     };
 
-    m_PlayerMesh = new fw::Mesh(Player, fw::PrimitiveTypes::GLTRIANGLE);
+    glGenBuffers(1, &m_VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+    glBufferData(GL_ARRAY_BUFFER, 3 * sizeof(fw::VertexFormat), Enemies.data(), GL_STATIC_DRAW);
+    m_EnemyMesh = new fw::Mesh(Enemies, fw::PrimitiveTypes::GLLINES);
 
-    m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 1.0f , 1.0f }, 0.0f));
-    //m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.5f , 1.5f }, fw::vec2{ 1.0f , 1.0f }, 20.0f));
-
-
-   // m_EnemyMesh = new fw::Mesh(Player, fw::PrimitiveTypes::GLLINES);
-
-    //for (int i = 0; i < 3; i++)
-    //{
-       // m_GameObjects.push_back(new GameObject(m_EnemyMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 0.0f , 0.5f + (i + 1) }, 0.0f));
-    //}
+    m_GameObjects.push_back(new GameObject(m_EnemyMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ -12.0f , 1.0 }, 0.0f));
+    m_GameObjects.push_back(new GameObject(m_EnemyMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ -12.0f , 1.0 }, 20.0f));
+    m_GameObjects.push_back(new GameObject(m_EnemyMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ -12.0f , 1.0 }, 10.0f));
+    m_GameObjects.push_back(new GameObject(m_EnemyMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ -12.0f , 1.0 }, 30.0f));
+    m_GameObjects.push_back(new GameObject(m_EnemyMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ -12.0f , 1.0 }, 40.0f));
+    
    
     
 
