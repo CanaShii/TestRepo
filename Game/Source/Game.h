@@ -27,8 +27,9 @@ protected:
     GLuint m_VBO = 0;
 
     fw::ShaderProgram* m_pBasicShader = nullptr;
-    fw::Mesh* m_PlayerMesh = nullptr;
-    fw::Mesh* m_EnemyMesh = nullptr;
+  
+    std::map<std::string, fw::Mesh*> m_Meshes;
+
     std::vector<GameObject*> m_GameObjects;
     vec2 m_Pos = { 0,0 };
     float m_ElapsedTime = 0.0f;

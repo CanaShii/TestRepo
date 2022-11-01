@@ -20,16 +20,16 @@ Game::Game(fw::FWCore& core) : m_Framework(core)
     glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
     glBufferData(GL_ARRAY_BUFFER, 3 * sizeof(fw::VertexFormat), Player.data(), GL_STATIC_DRAW);
 
-    m_PlayerMesh = new fw::Mesh(Player, fw::PrimitiveTypes::GLTRIANGLE);
+    m_Meshes["Player"] = new fw::Mesh(Player, fw::PrimitiveTypes::GLTRIANGLE);
 
-    m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 1.0f , 1.0f }, 0.0f));
-    m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 1.2f , 1.2f }, 10.0f));
-    m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 1.4f , 1.0f }, 20.0f));
-    m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 0.3f , 0.3f }, 50.0f));
-    m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 0.7f , -1.0f }, 40.0f));
-    m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 1.2f , -1.0f }, 40.0f));
-    m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 1.0f , 3.0f }, 19.0f));
-    m_GameObjects.push_back(new GameObject(m_PlayerMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 2.0f , 2.0f }, 55.0f));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Player"], fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 1.0f , 1.0f }, 0.0f));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Player"], fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 1.2f , 1.2f }, 10.0f));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Player"], fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 1.4f , 1.0f }, 20.0f));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Player"], fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 0.3f , 0.3f }, 50.0f));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Player"], fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 0.7f , -1.0f }, 40.0f));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Player"], fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 1.2f , -1.0f }, 40.0f));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Player"], fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 1.0f , 3.0f }, 19.0f));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Player"], fw::vec2{ 1.0f , 1.0f }, fw::vec2{ 2.0f , 2.0f }, 55.0f));
     //All 8 Player Objects
 
     vec2 E1 = { -0.5f, 0.0f };
@@ -49,14 +49,14 @@ Game::Game(fw::FWCore& core) : m_Framework(core)
     glGenBuffers(1, &m_VBO);
     glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
     glBufferData(GL_ARRAY_BUFFER, 3 * sizeof(fw::VertexFormat), Enemies.data(), GL_STATIC_DRAW);
-    m_EnemyMesh = new fw::Mesh(Enemies, fw::PrimitiveTypes::GLLINES);
+    m_Meshes["Enemy"] = new fw::Mesh(Enemies, fw::PrimitiveTypes::GLLINES);
 
-    m_GameObjects.push_back(new GameObject(m_EnemyMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ -12.0f , 1.0 }, 0.0f));
-    m_GameObjects.push_back(new GameObject(m_EnemyMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ -12.0f , 1.0 }, 20.0f));
-    m_GameObjects.push_back(new GameObject(m_EnemyMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ -12.0f , 1.0 }, 10.0f));
-    m_GameObjects.push_back(new GameObject(m_EnemyMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ -12.0f , 1.0 }, 30.0f));
-    m_GameObjects.push_back(new GameObject(m_EnemyMesh, fw::vec2{ 1.0f , 1.0f }, fw::vec2{ -12.0f , 1.0 }, 40.0f));
-    
+    m_GameObjects.push_back(new GameObject(m_Meshes["Enemy"], fw::vec2{ 1.0f , 1.0f }, fw::vec2{ -12.0f , 1.0 }, 0.0f));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Enemy"], fw::vec2{ 1.0f , 1.0f }, fw::vec2{ -12.0f , 1.0 }, 20.0f));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Enemy"], fw::vec2{ 1.0f , 1.0f }, fw::vec2{ -12.0f , 1.0 }, 10.0f));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Enemy"], fw::vec2{ 1.0f , 1.0f }, fw::vec2{ -12.0f , 1.0 }, 30.0f));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Enemy"], fw::vec2{ 1.0f , 1.0f }, fw::vec2{ -12.0f , 1.0 }, 40.0f));
+    //All Enemy Objects
    
     
 
@@ -69,14 +69,20 @@ Game::~Game()
     delete m_pBasicShader;
 
     //delete m_pSecondShader;
-    for (auto GameObjects: m_GameObjects)
+    for (auto GameObjects : m_GameObjects)
     {
         delete GameObjects;
     }
 
+    //delete m_Meshes["Player"];
+    //delete m_Meshes["Enemy"];
+
+    for (auto Elem : m_Meshes)
+    {
+        delete Elem.second;
+    }
     delete m_pImGuiManager;
-    delete m_PlayerMesh;
-    delete m_EnemyMesh;
+    
 }
 
 void Game::StartFrame(float deltaTime)
