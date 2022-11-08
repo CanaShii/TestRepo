@@ -8,14 +8,17 @@
 #include "CoreHeaders.h"
 
 #include "../Libraries/imgui/imgui.h"
+#include "../Libraries/json/json.hpp"
 
 #include "FWCore.h"
 #include "GameCore.h"
-#include "FWEventManager.h"
-#include "FWEvent.h"
-#include "InputEvent.h"
+#include "Events/FWEventManager.h"
+#include "Events/FWEvent.h"
+#include "Events/InputEvent.h"
 #include "UI/ImGuiManager.h"
 #include "Utility/Utility.h"
-#include "Mesh.h"
-#include "vec2.h"
+#include "Mesh/Mesh.h"
+#include "Mesh/Texture.h"
+#include "Math/vec2.h"
 #include "Utility/ShaderProgram.h"
+

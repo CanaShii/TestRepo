@@ -26,7 +26,8 @@ project "Framework"
 	files {
 		"Framework/Source/**.cpp",
 		"Framework/Source/**.h",
-		"Framework/Libraries/imgui/*.cpp",
-		"Framework/Libraries/imgui/*.h"
+		"Framework/Libraries/**.cpp",
+		"Framework/Libraries/**.h",
+		"Framework/Libraries/**.hpp",
 	}
 	includedirs { "Framework/Source" }

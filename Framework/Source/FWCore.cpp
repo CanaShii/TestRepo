@@ -14,10 +14,10 @@
 #include "GL/WGLExtensions.h"
 #include "GL/MyGLContext.h"
 #include "GameCore.h"
-#include "Mesh.h"
-#include "vec2.h"
-#include "FWEvent.h"
-#include "InputEvent.h"
+#include "Mesh/Mesh.h"
+#include "Math/vec2.h"
+#include "Events/FWEvent.h"
+#include "Events/InputEvent.h"
 #include "Utility/Utility.h"
 
 

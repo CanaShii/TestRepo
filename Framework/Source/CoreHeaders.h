@@ -27,5 +27,5 @@
 
 #include "GL/GLExtensions.h"
 #include "GL/WGLExtensions.h"
-#include "vec2.h"
+#include "Math/vec2.h"
 

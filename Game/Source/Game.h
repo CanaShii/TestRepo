@@ -1,11 +1,10 @@
 #pragma once
 #include <vector>
 #include "GameCore.h"
+#include "DataType.h"
 
 class fw::Mesh;
 class GameObject;
-
-typedef fw::vec2 vec2;
 
 class Game : public fw::GameCore
 {
@@ -24,13 +23,13 @@ protected:
     fw::FWCore& m_Framework;
     fw::ImGuiManager* m_pImGuiManager = nullptr;
 
-    GLuint m_VBO = 0;
-
     fw::ShaderProgram* m_pBasicShader = nullptr;
-  
+    std::map<std::string, fw::ShaderProgram*> m_Shaders;
     std::map<std::string, fw::Mesh*> m_Meshes;
+    std::map<std::string, fw::Texture*> m_Textures;
 
     std::vector<GameObject*> m_GameObjects;
+
     vec2 m_Pos = { 0,0 };
     float m_ElapsedTime = 0.0f;
     float m_Color[4] = { 1, 1, 1, 1 };

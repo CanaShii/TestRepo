@@ -1,6 +1,6 @@
 #include "CoreHeaders.h"
 #include "GameCore.h"
-#include "FWEventManager.h"
+#include "Events/FWEventManager.h"
 
 namespace fw {
 

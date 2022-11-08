@@ -1,10 +1,14 @@
 attribute vec2 a_Position;
+attribute vec2 a_UV;
 
 uniform vec2 u_Scale;
-uniform vec2 u_Offset;
-uniform vec2 u_Resolution;
 uniform float u_Angle;
+uniform vec2 u_Offset;
 uniform float u_AspectRatio;
+uniform vec2 u_uvScale;
+uniform vec2 u_uvOffset;
+
+varying vec2 v_UV;
 
 void main()
 {
@@ -25,5 +29,6 @@ void main()
 	pos *= vec4( u_AspectRatio, 1, 1, 1 );
 
 	gl_Position = vec4( pos, 0, 1 );
-	
+
+	v_UV = a_UV * u_uvScale + u_uvOffset;
 }
