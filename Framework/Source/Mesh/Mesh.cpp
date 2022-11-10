@@ -22,44 +22,35 @@ fw::Mesh::~Mesh()
     glDeleteBuffers(1, &m_VBO);
 }
 
+void fw::Mesh::SetupUniform2f(ShaderProgram* shader, const char* name, vec2& value)
+{
+    GLint location = glGetUniformLocation(shader->GetProgram(), name);
+    glUniform2f(location, value.X, value.Y);
+    
+}
+
+void fw::Mesh::SetupUniform1f(ShaderProgram* shader, const char* name, float& value)
+{
+    GLint location = glGetUniformLocation(shader->GetProgram(), name);
+    glUniform1f(location, value);
+
+}
+
 void fw::Mesh::drawMesh(ShaderProgram* shader, fw::Texture* texture, vec2 scale, float angle, vec2 pos, float aRatio)
 {
     glUseProgram(shader->GetProgram());
 
    
     // Program our uniforms.
-    GLint u_Scale = glGetUniformLocation(shader->GetProgram(), "u_Scale");
-    glUniform2f(u_Scale, scale.X, scale.Y);
 
-    GLint u_Offset = glGetUniformLocation(shader->GetProgram(), "u_Offset");
-    glUniform2f(u_Offset, pos.X, pos.Y);
-
-    GLint u_Angle = glGetUniformLocation(shader->GetProgram(), "u_Angle");
-    glUniform1f(u_Angle, angle);
-
-    GLint u_Color = glGetUniformLocation(shader->GetProgram(), "u_Color");
-    glUniform4f(u_Color, 255, 255, 255, 255);
-
-    GLint u_Resolution = glGetUniformLocation(shader->GetProgram(), "u_Resolution");
-    glUniform2f(u_Resolution, ImGui::GetWindowWidth(), ImGui::GetWindowHeight());
-
-    GLint u_AspectRatio = glGetUniformLocation(shader->GetProgram(), "u_AspectRatio");
-    glUniform1f(u_AspectRatio, aRatio);
-
-    //GLint iGlobalTime = glGetUniformLocation(shader->GetProgram(), "iGlobalTime");
-    //glUniform1f(iGlobalTime, 0.0f);
-
-    //GLint iDate = glGetUniformLocation(shader->GetProgram(), "iDate");
-    //glUniform4f(iDate, 2022.0f, 10.0f, 04.0f, 0.0f);
-
-    //GLint iResolution = glGetUniformLocation(shader->GetProgram(), "iResolution");
-    //glUniform3f(iResolution, ImGui::GetWindowWidth(), ImGui::GetWindowHeight(), 1.0f);
-
-    GLint u_uvScale = glGetUniformLocation(shader->GetProgram(), "u_uvScale");
-    GLint u_uvOffset = glGetUniformLocation(shader->GetProgram(), "u_uvOffset");
-
-    glUniform2f(u_uvScale, 16/256.0f, 16/128.0f);
-    glUniform2f(u_uvOffset, 51/256.0f, 61/128.0f);
+    SetupUniform1f(shader, "u_Angle", angle);
+    SetupUniform1f(shader, "u_AspectRatio", aRatio);
+    SetupUniform2f(shader, "u_Scale", scale);
+    SetupUniform2f(shader, "u_Offset", pos);
+    SetupUniform2f(shader, "u_uvScale", vec2(16 / 256.0f, 16 / 128.0f));
+    SetupUniform2f(shader, "u_uvOffset", vec2(51 / 256.0f, 61 / 128.0f));
+    SetupUniform2f(shader, "u_CameraPosition", vec2(0.0f, 0.0f));
+    SetupUniform2f(shader, "u_ProjectionScale", vec2(0.1f, 0.1f));
 
     int textureUnitNumber = 0;
     glActiveTexture(GL_TEXTURE0 + textureUnitNumber);
@@ -89,12 +80,13 @@ void fw::Mesh::drawMesh(ShaderProgram* shader, fw::Texture* texture, vec2 scale,
     }
     else if (m_Mode == PrimitiveTypes::GLPOINTS)
     {
+        glDrawArrays(GL_POINTS, 0, m_Format.size());
     }
     else if (m_Mode == PrimitiveTypes::GLTRIANGLE)
     {
         glDrawArrays(GL_TRIANGLES, 0, m_Format.size());
     }
-        glDrawArrays(GL_POINTS, 0, m_Format.size());
+      
     
 }
 

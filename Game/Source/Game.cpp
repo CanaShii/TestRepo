@@ -23,12 +23,19 @@ Game::Game(fw::FWCore& core) : m_Framework(core)
 
     };
 
+
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
+
     //std::string filename = "Zelda.json";
 
     //std::ifstream f("Zelda.json");
     //json data = json::parse(f);
 
     //data[filename];
+
+    //data["Size.x"] = 16.0f;
+    //data["Size.y"] = 16.0f;
    
     m_Shaders["Basic"] = new fw::ShaderProgram("Data/Shaders/Basic.vert", "Data/Shaders/Basic.frag");
 

@@ -37,6 +37,9 @@ namespace fw {
 	   Mesh(std::vector<VertexFormat>& vertex, PrimitiveTypes mode);
 	   virtual ~Mesh();
 
+	   void SetupUniform2f(ShaderProgram* shader, const char* name, vec2& value);
+	   void SetupUniform1f(ShaderProgram* shader, const char* name, float& value);
+
 	   void drawMesh(ShaderProgram* shader,fw::Texture* texture, vec2 scale, float angle, vec2 pos, float aRatio);
 
    protected:

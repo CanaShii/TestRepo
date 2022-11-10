@@ -6,9 +6,24 @@ uniform vec2 u_Resolution;
 uniform float u_Angle;
 uniform float u_AspectRatio;
 
+vec2 u_CameraPosition = vec2(0,0);
+vec2 u_ProjectionScale = vec2(0.1, 0.1);
+
+vec2 TransformToWorldSpace(vec2 pos);
+
 void main()
 {
-	vec2 pos = a_Position;
+	vec2 ObjectPos = a_Position;
+	vec2 WorldPos = TransformToWorldSpace(ObjectPos);
+	vec2 ViewPos = WorldPos - u_CameraPosition;
+	vec2 ClipPos = ViewPos * u_ProjectionScale;
+
+	gl_Position = vec4( ClipPos, 0, 1 );
+	
+}
+
+vec2 TransformToWorldSpace(vec2 pos)
+{
 
 	// Scale.
 	pos *= u_Scale;
@@ -21,9 +36,5 @@ void main()
 	// Translate.
 	pos += u_Offset;
 
-	// Correct for aspect ratio.
-	pos *= vec4( u_AspectRatio, 1, 1, 1 );
-
-	gl_Position = vec4( pos, 0, 1 );
-	
+	return pos;
 }
