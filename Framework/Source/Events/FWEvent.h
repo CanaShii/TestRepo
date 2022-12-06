@@ -14,16 +14,16 @@ namespace fw {
         Released,
     };
 
-    class Event
+    class FWEvent
     {
     public:
-        Event() {}
-        virtual ~Event() {}
+        FWEvent() {}
+        virtual ~FWEvent() {}
 
         virtual const char* GetType() = 0;
     };
 
-    class InputEvent : public Event
+    class InputEvent : public FWEvent
     {
     public:
         InputEvent(DeviceType device, InputState state, int id)

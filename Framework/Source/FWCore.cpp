@@ -16,6 +16,8 @@
 #include "GameCore.h"
 #include "Mesh/Mesh.h"
 #include "Math/vec2.h"
+#include "Camera.h"
+#include "SpriteSheet.h"
 #include "Events/FWEvent.h"
 #include "Events/InputEvent.h"
 #include "Utility/Utility.h"
@@ -62,7 +64,7 @@ bool FWCore::Init(int width, int height)
 int FWCore::Run(GameCore* pGameCore)
 {
 
-    m_Game = pGameCore;
+    m_pGame = pGameCore;
     // Main loop.
     MSG message;
     bool done = false;
@@ -423,24 +425,27 @@ LRESULT CALLBACK FWCore::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 
     case WM_KEYDOWN:
         {
-            bool keyWasPressedLastTimeMessageArrived = lParam & (1 << 30);
+        bool keyWasPressedLastTimeMessageArrived = lParam & (1 << 30);
 
-            if( keyWasPressedLastTimeMessageArrived == false )
-            {
-                if( wParam == VK_ESCAPE && pFWCore->m_EscapeKeyWillQuit )
-                    PostQuitMessage( 0 );
+        if (keyWasPressedLastTimeMessageArrived == false)
+        {
+            if (wParam == VK_ESCAPE && pFWCore->m_EscapeKeyWillQuit)
+                PostQuitMessage(0);
 
-                pFWCore->m_KeyStates[wParam] = true;
-            }
+            pFWCore->m_KeyStates[wParam] = true;
+
+            FWEvent* pEvent = new InputEvent(DeviceType::Keyboard, InputState::Pressed, (int)wParam);
+            pFWCore->m_pGame->GetEventManager()->AddEvent(pEvent);
+        }
         }
         return 0;
 
     case WM_KEYUP:
         {
-            //pFWCore->m_KeyStates[wParam] = false;
+         pFWCore->m_KeyStates[wParam] = false;
 
-            //FWEvent* pEvent = new InputEvent(DeviceType::Keyboard, InputState::Pressed, wParam);
-            //pFWCore->m_Game->GetEventManager()->AddEvent(pEvent);
+         FWEvent* pEvent = new InputEvent(DeviceType::Keyboard, InputState::Released, (int)wParam);
+         pFWCore->m_pGame->GetEventManager()->AddEvent(pEvent);
         }
         return 0;
 

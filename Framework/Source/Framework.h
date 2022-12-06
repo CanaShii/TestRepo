@@ -21,4 +21,6 @@
 #include "Mesh/Texture.h"
 #include "Math/vec2.h"
 #include "Utility/ShaderProgram.h"
+#include "Camera.h"
+#include "SpriteSheet.h"
 

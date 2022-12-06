@@ -14,11 +14,6 @@ namespace fw {
         delete m_pEventManager;
     }
 
-    FWEventManager* GameCore::GetEventManager()
-    {
-        return nullptr;
-    }
-
 }
 
 

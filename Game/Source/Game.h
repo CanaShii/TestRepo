@@ -4,6 +4,7 @@
 #include "DataType.h"
 
 class fw::Mesh;
+class VirtualController;
 class GameObject;
 
 class Game : public fw::GameCore
@@ -13,15 +14,14 @@ public:
     virtual ~Game();
 
     virtual void StartFrame(float deltaTime) override;
+    virtual void Game::OnEvent(fw::FWEvent* event) override;
     virtual void Update(float deltaTime) override;
     virtual void Draw() override;
-
-    virtual void Game::OnEvent(fw::FWEvent* event) override;
-        
 
 protected:
     fw::FWCore& m_Framework;
     fw::ImGuiManager* m_pImGuiManager = nullptr;
+    VirtualController* m_pControllers[4] = { nullptr };
 
     fw::ShaderProgram* m_pBasicShader = nullptr;
     std::map<std::string, fw::ShaderProgram*> m_Shaders;

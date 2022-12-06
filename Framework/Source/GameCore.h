@@ -3,21 +3,26 @@
 
 namespace fw {
     
-class GameCore
-{
-public:
-    GameCore();
-    virtual ~GameCore();
 
-    FWEventManager* GetEventManager();
-    
-    virtual void StartFrame(float deltaTime) = 0;
-    virtual void Update(float deltaTime) = 0;
-    virtual void Draw() = 0;
-    virtual void OnEvent(FWEvent* event) = 0;
+    class FWEvent;
+    class FWEventManager;
 
-protected:
-    FWEventManager* m_pEventManager = nullptr;
-};
+    class GameCore
+    {
+    public:
+        GameCore();
+        virtual ~GameCore();
 
-} // namespace fw
+        virtual void StartFrame(float deltaTime) = 0;
+        virtual void OnEvent(FWEvent* pEvent) = 0;
+        virtual void Update(float deltaTime) = 0;
+        virtual void Draw() = 0;
+
+        FWEventManager* GetEventManager() { return m_pEventManager; }
+
+    protected:
+        FWEventManager* m_pEventManager = nullptr;
+    };
+
+
+} 

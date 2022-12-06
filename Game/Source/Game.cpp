@@ -2,9 +2,8 @@
 #include <fstream>
 #include "Game.h"
 #include "GameObject.h"
+#include "VirtualController.h"
 #include <vector>
-
-using json = nlohmann::json;
 
 Game::Game(fw::FWCore& core) : m_Framework(core)
 {
@@ -27,6 +26,11 @@ Game::Game(fw::FWCore& core) : m_Framework(core)
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
 
+    for (int i = 0; i < 4; i++)
+    {
+        m_pControllers[i] = new VirtualController();
+    }
+
     //std::string filename = "Zelda.json";
 
     //std::ifstream f("Zelda.json");
@@ -45,18 +49,17 @@ Game::Game(fw::FWCore& core) : m_Framework(core)
 
     m_Textures["Default"] = new fw::Texture("Data/Textures/Zelda.png");
 
-    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(0, 0), 0));
-    
-   
-    
-
-
-
+    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), m_Pos, 0));
 };
 
 Game::~Game()
 {
     delete m_pBasicShader;
+
+    for (int i = 0; i < 4; i++)
+    {
+        delete m_pControllers[i];
+    }
 
     for (GameObject* pObject : m_GameObjects)
     {
@@ -85,11 +88,26 @@ void Game::StartFrame(float deltaTime)
     m_pEventManager->ProcessEvents();
 }
 
+void Game::OnEvent(fw::FWEvent* event)
+{
+    m_pControllers[0]->OnEvent(event);
+}
+
 void Game::Update(float deltaTime)
 {
     for (int i = 0; i < m_GameObjects.size(); i++)
     {
         m_GameObjects[i]->Update(deltaTime);
+    }
+
+    if (m_pControllers[0]->IsHeld(VirtualController::Action::Left))
+    {
+        m_Pos.X -= deltaTime;
+    }
+
+    if (m_pControllers[0]->IsHeld(VirtualController::Action::Right))
+    {
+        m_Pos.X += deltaTime;
     }
 }
 
@@ -107,6 +125,4 @@ void Game::Draw()
     m_pImGuiManager->EndFrame();
 }
 
-void Game::OnEvent(fw::FWEvent* event)
-{
-}
+

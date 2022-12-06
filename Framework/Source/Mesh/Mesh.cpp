@@ -36,7 +36,7 @@ void fw::Mesh::SetupUniform1f(ShaderProgram* shader, const char* name, float& va
 
 }
 
-void fw::Mesh::drawMesh(ShaderProgram* shader, fw::Texture* texture, vec2 scale, float angle, vec2 pos, float aRatio)
+void fw::Mesh::drawMesh(ShaderProgram* shader, fw::Texture* texture, vec2 scale, float angle, vec2 pos, float aRatio, vec2 uvScale, vec2 uvOffset)
 {
     glUseProgram(shader->GetProgram());
 
@@ -47,8 +47,8 @@ void fw::Mesh::drawMesh(ShaderProgram* shader, fw::Texture* texture, vec2 scale,
     SetupUniform1f(shader, "u_AspectRatio", aRatio);
     SetupUniform2f(shader, "u_Scale", scale);
     SetupUniform2f(shader, "u_Offset", pos);
-    SetupUniform2f(shader, "u_uvScale", vec2(16 / 256.0f, 16 / 128.0f));
-    SetupUniform2f(shader, "u_uvOffset", vec2(51 / 256.0f, 61 / 128.0f));
+    SetupUniform2f(shader, "u_uvScale", vec2(uvScale.X / 256.0f, uvScale.Y / 128.0f)); // / 256.0f / 128.0f
+    SetupUniform2f(shader, "u_uvOffset", vec2(uvOffset.X / 256.0f, uvOffset.Y / 128.0f));
     SetupUniform2f(shader, "u_CameraPosition", vec2(0.0f, 0.0f));
     SetupUniform2f(shader, "u_ProjectionScale", vec2(0.1f, 0.1f));
 
