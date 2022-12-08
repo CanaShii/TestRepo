@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1362EE31-7FCC-A2A8-C80A-544E34B480FD}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Framework</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>bin\x64\Debug\</OutDir>
+    <IntDir>obj\x64\Debug\Framework\</IntDir>
+    <TargetName>Framework</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>bin\x64\Release\</OutDir>
+    <IntDir>obj\x64\Release\Framework\</IntDir>
+    <TargetName>Framework</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>..\Framework\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>..\Framework\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Framework\Libraries\imgui\imconfig.h" />
+    <ClInclude Include="..\Framework\Libraries\imgui\imgui.h" />
+    <ClInclude Include="..\Framework\Libraries\imgui\imgui_internal.h" />
+    <ClInclude Include="..\Framework\Libraries\imgui\imstb_rectpack.h" />
+    <ClInclude Include="..\Framework\Libraries\imgui\imstb_textedit.h" />
+    <ClInclude Include="..\Framework\Libraries\imgui\imstb_truetype.h" />
+    <ClInclude Include="..\Framework\Source\CoreHeaders.h" />
+    <ClInclude Include="..\Framework\Source\Events\EventManager.h" />
+    <ClInclude Include="..\Framework\Source\Events\Events.h" />
+    <ClInclude Include="..\Framework\Source\FWCore.h" />
+    <ClInclude Include="..\Framework\Source\Framework.h" />
+    <ClInclude Include="..\Framework\Source\GL\GLExtensions.h" />
+    <ClInclude Include="..\Framework\Source\GL\MyGLContext.h" />
+    <ClInclude Include="..\Framework\Source\GL\WGLExtensions.h" />
+    <ClInclude Include="..\Framework\Source\GL\glext.h" />
+    <ClInclude Include="..\Framework\Source\GL\wglext.h" />
+    <ClInclude Include="..\Framework\Source\GameCore.h" />
+    <ClInclude Include="..\Framework\Source\Math\Vector.h" />
+    <ClInclude Include="..\Framework\Source\Mesh\Mesh.h" />
+    <ClInclude Include="..\Framework\Source\Mesh\Texture.h" />
+    <ClInclude Include="..\Framework\Source\UI\ImGuiManager.h" />
+    <ClInclude Include="..\Framework\Source\Utility\ShaderProgram.h" />
+    <ClInclude Include="..\Framework\Source\Utility\Utility.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Framework\Libraries\imgui\imgui.cpp" />
+    <ClCompile Include="..\Framework\Libraries\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\Framework\Libraries\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\Framework\Libraries\imgui\imgui_tables.cpp" />
+    <ClCompile Include="..\Framework\Libraries\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="..\Framework\Source\Events\EventManager.cpp" />
+    <ClCompile Include="..\Framework\Source\FWCore.cpp" />
+    <ClCompile Include="..\Framework\Source\GL\GLExtensions.cpp" />
+    <ClCompile Include="..\Framework\Source\GL\MyGLContext.cpp" />
+    <ClCompile Include="..\Framework\Source\GL\WGLExtensions.cpp" />
+    <ClCompile Include="..\Framework\Source\GameCore.cpp" />
+    <ClCompile Include="..\Framework\Source\Math\Vector.cpp" />
+    <ClCompile Include="..\Framework\Source\Mesh\Mesh.cpp" />
+    <ClCompile Include="..\Framework\Source\Mesh\Texture.cpp" />
+    <ClCompile Include="..\Framework\Source\UI\ImGuiManager.cpp" />
+    <ClCompile Include="..\Framework\Source\Utility\ShaderProgram.cpp" />
+    <ClCompile Include="..\Framework\Source\Utility\Utility.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Libraries">
+      <UniqueIdentifier>{0259E1F6-6EC3-956D-B701-471323AB73C2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\imgui">
+      <UniqueIdentifier>{EC9F00EA-582B-6EAE-613C-F1A2CD46CAAE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{56EB95D1-428D-C0A7-2B48-D4FB178947F8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Events">
+      <UniqueIdentifier>{7ABAF22F-E67A-6E66-AFB5-B7E31B35B342}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GL">
+      <UniqueIdentifier>{F8048266-646F-36DD-ADAD-E78219571432}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Math">
+      <UniqueIdentifier>{EFD51A0F-5B8B-9304-E47F-8DDB50348A08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Mesh">
+      <UniqueIdentifier>{D2E61A0F-3E9C-9304-C790-8DDB33458A08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\UI">
+      <UniqueIdentifier>{C3068266-2F71-36DD-78AF-E782E4581432}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Utility">
+      <UniqueIdentifier>{999F8AF9-856D-7EFF-6E01-EF255A6E5A64}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Framework\Libraries\imgui\imconfig.h">
+      <Filter>Libraries\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Libraries\imgui\imgui.h">
+      <Filter>Libraries\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Libraries\imgui\imgui_internal.h">
+      <Filter>Libraries\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Libraries\imgui\imstb_rectpack.h">
+      <Filter>Libraries\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Libraries\imgui\imstb_textedit.h">
+      <Filter>Libraries\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Libraries\imgui\imstb_truetype.h">
+      <Filter>Libraries\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Source\CoreHeaders.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Source\Events\EventManager.h">
+      <Filter>Source\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Source\Events\Events.h">
+      <Filter>Source\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Source\FWCore.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Source\Framework.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Source\GL\GLExtensions.h">
+      <Filter>Source\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Source\GL\MyGLContext.h">
+      <Filter>Source\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Source\GL\WGLExtensions.h">
+      <Filter>Source\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Source\GL\glext.h">
+      <Filter>Source\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Source\GL\wglext.h">
+      <Filter>Source\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Source\GameCore.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Source\Math\Vector.h">
+      <Filter>Source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Source\Mesh\Mesh.h">
+      <Filter>Source\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Source\Mesh\Texture.h">
+      <Filter>Source\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Source\UI\ImGuiManager.h">
+      <Filter>Source\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Source\Utility\ShaderProgram.h">
+      <Filter>Source\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Source\Utility\Utility.h">
+      <Filter>Source\Utility</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Framework\Libraries\imgui\imgui.cpp">
+      <Filter>Libraries\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\Libraries\imgui\imgui_demo.cpp">
+      <Filter>Libraries\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\Libraries\imgui\imgui_draw.cpp">
+      <Filter>Libraries\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\Libraries\imgui\imgui_tables.cpp">
+      <Filter>Libraries\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\Libraries\imgui\imgui_widgets.cpp">
+      <Filter>Libraries\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\Source\Events\EventManager.cpp">
+      <Filter>Source\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\Source\FWCore.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\Source\GL\GLExtensions.cpp">
+      <Filter>Source\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\Source\GL\MyGLContext.cpp">
+      <Filter>Source\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\Source\GL\WGLExtensions.cpp">
+      <Filter>Source\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\Source\GameCore.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\Source\Math\Vector.cpp">
+      <Filter>Source\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\Source\Mesh\Mesh.cpp">
+      <Filter>Source\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\Source\Mesh\Texture.cpp">
+      <Filter>Source\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\Source\UI\ImGuiManager.cpp">
+      <Filter>Source\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\Source\Utility\ShaderProgram.cpp">
+      <Filter>Source\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\Source\Utility\Utility.cpp">
+      <Filter>Source\Utility</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
