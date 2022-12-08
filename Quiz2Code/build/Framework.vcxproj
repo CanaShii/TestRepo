@@ -84,6 +84,7 @@
     <ClInclude Include="..\Framework\Libraries\imgui\imstb_rectpack.h" />
     <ClInclude Include="..\Framework\Libraries\imgui\imstb_textedit.h" />
     <ClInclude Include="..\Framework\Libraries\imgui\imstb_truetype.h" />
+    <ClInclude Include="..\Framework\Source\BaseComponent.h" />
     <ClInclude Include="..\Framework\Source\CoreHeaders.h" />
     <ClInclude Include="..\Framework\Source\Events\EventManager.h" />
     <ClInclude Include="..\Framework\Source\Events\Events.h" />
@@ -98,6 +99,8 @@
     <ClInclude Include="..\Framework\Source\Math\Vector.h" />
     <ClInclude Include="..\Framework\Source\Mesh\Mesh.h" />
     <ClInclude Include="..\Framework\Source\Mesh\Texture.h" />
+    <ClInclude Include="..\Framework\Source\RenderableComponent.h" />
+    <ClInclude Include="..\Framework\Source\TransformComponent.h" />
     <ClInclude Include="..\Framework\Source\UI\ImGuiManager.h" />
     <ClInclude Include="..\Framework\Source\Utility\ShaderProgram.h" />
     <ClInclude Include="..\Framework\Source\Utility\Utility.h" />
@@ -108,6 +111,7 @@
     <ClCompile Include="..\Framework\Libraries\imgui\imgui_draw.cpp" />
     <ClCompile Include="..\Framework\Libraries\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\Framework\Libraries\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="..\Framework\Source\BaseComponent.cpp" />
     <ClCompile Include="..\Framework\Source\Events\EventManager.cpp" />
     <ClCompile Include="..\Framework\Source\FWCore.cpp" />
     <ClCompile Include="..\Framework\Source\GL\GLExtensions.cpp" />
@@ -117,6 +121,8 @@
     <ClCompile Include="..\Framework\Source\Math\Vector.cpp" />
     <ClCompile Include="..\Framework\Source\Mesh\Mesh.cpp" />
     <ClCompile Include="..\Framework\Source\Mesh\Texture.cpp" />
+    <ClCompile Include="..\Framework\Source\RenderableComponent.cpp" />
+    <ClCompile Include="..\Framework\Source\TransformComponent.cpp" />
     <ClCompile Include="..\Framework\Source\UI\ImGuiManager.cpp" />
     <ClCompile Include="..\Framework\Source\Utility\ShaderProgram.cpp" />
     <ClCompile Include="..\Framework\Source\Utility\Utility.cpp" />

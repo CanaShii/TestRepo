@@ -48,6 +48,9 @@
     <ClInclude Include="..\Framework\Libraries\imgui\imstb_truetype.h">
       <Filter>Libraries\imgui</Filter>
     </ClInclude>
+    <ClInclude Include="..\Framework\Source\BaseComponent.h">
+      <Filter>Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\Framework\Source\CoreHeaders.h">
       <Filter>Source</Filter>
     </ClInclude>
@@ -90,6 +93,12 @@
     <ClInclude Include="..\Framework\Source\Mesh\Texture.h">
       <Filter>Source\Mesh</Filter>
     </ClInclude>
+    <ClInclude Include="..\Framework\Source\RenderableComponent.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Source\TransformComponent.h">
+      <Filter>Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\Framework\Source\UI\ImGuiManager.h">
       <Filter>Source\UI</Filter>
     </ClInclude>
@@ -115,6 +124,9 @@
     </ClCompile>
     <ClCompile Include="..\Framework\Libraries\imgui\imgui_widgets.cpp">
       <Filter>Libraries\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\Source\BaseComponent.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="..\Framework\Source\Events\EventManager.cpp">
       <Filter>Source\Events</Filter>
@@ -142,6 +154,12 @@
     </ClCompile>
     <ClCompile Include="..\Framework\Source\Mesh\Texture.cpp">
       <Filter>Source\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\Source\RenderableComponent.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\Source\TransformComponent.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="..\Framework\Source\UI\ImGuiManager.cpp">
       <Filter>Source\UI</Filter>

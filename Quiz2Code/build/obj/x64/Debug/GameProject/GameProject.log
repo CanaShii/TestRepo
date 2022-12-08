@@ -1,0 +1,8 @@
+﻿  Game.cpp
+  GameObject.cpp
+C:\Users\Alra0064\Desktop\TestRepo\Quiz2Code\Game\Source\Objects\GameObject.cpp(36,9): warning C4101: 'Rtype': unreferenced local variable
+C:\Users\Alra0064\Desktop\TestRepo\Quiz2Code\Game\Source\Objects\GameObject.cpp(37,9): warning C4101: 'TType': unreferenced local variable
+  VirtualController.cpp
+  main.cpp
+  Generating Code...
+  GameProject.vcxproj -> C:\Users\Alra0064\Desktop\TestRepo\Quiz2Code\build\bin\x64\Debug\GameProject.exe
