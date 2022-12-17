@@ -32,11 +32,15 @@ void VirtualController::OnEvent(fw::FWEvent* pEvent)
             {
                 if (keyID == 'D' || keyID == VK_RIGHT) { m_Values |= Action::Right; }
                 if (keyID == 'A' || keyID == VK_LEFT) { m_Values |= Action::Left; }
+                if (keyID == 'W' || keyID == VK_UP) { m_Values |= Action::Up; }
+                if (keyID == 'S' || keyID == VK_DOWN) { m_Values |= Action::Down; }
             }
             if (pInputEvent->GetState() == fw::InputState::Released)
             {
                 if (keyID == 'D' || keyID == VK_RIGHT) { m_Values &= ~Action::Right; }
                 if (keyID == 'A' || keyID == VK_LEFT) { m_Values &= ~Action::Left; }
+                if (keyID == 'W' || keyID == VK_UP) { m_Values &= ~Action::Up; }
+                if (keyID == 'S' || keyID == VK_DOWN) { m_Values &= ~Action::Down; }
             }
         }
     }

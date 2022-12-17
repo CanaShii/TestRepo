@@ -6,6 +6,8 @@
 class fw::Mesh;
 class VirtualController;
 class GameObject;
+class Player;
+class ScoreDisplay;
 
 class Game : public fw::GameCore
 {
@@ -30,7 +32,9 @@ protected:
 
     std::vector<GameObject*> m_GameObjects;
 
-    vec2 m_Pos = { 0,0 };
+    Player* m_Player = nullptr;
+    ScoreDisplay* m_Score = nullptr;
+
     float m_ElapsedTime = 0.0f;
     float m_Color[4] = { 1, 1, 1, 1 };
 };

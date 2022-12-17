@@ -86,6 +86,10 @@ void fw::Mesh::drawMesh(ShaderProgram* shader, fw::Texture* texture, vec2 scale,
     {
         glDrawArrays(GL_TRIANGLES, 0, m_Format.size());
     }
+    else if (m_Mode == PrimitiveTypes::GLTRIANGLE_FAN)
+    {
+        glDrawArrays(GL_TRIANGLE_FAN, 0, m_Format.size());
+    }
       
     
 }

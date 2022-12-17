@@ -9,7 +9,7 @@ namespace fw
 {
     SpriteSheet::SpriteSheet()
     {
-        std::ifstream f("Framework/Libraries/json/Zelda.json");
+        std::ifstream f("Data/Textures/Zelda.json");
         json data = json::parse(f);
         json spriteSheetData = data["sprites"];
 

@@ -8,7 +8,8 @@ public:
     {
         Left = 1 << 0,
         Right = 1 << 1,
-        Jump = 1 << 2,
+        Up = 1 << 2,
+        Down = 1 << 3,
     };
 
 public:

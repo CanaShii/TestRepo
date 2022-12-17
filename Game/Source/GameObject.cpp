@@ -7,8 +7,6 @@ GameObject::GameObject(fw::Mesh* mesh, fw::ShaderProgram* shader, fw::Texture* t
 	m_Scale(scale),
 	m_Position(pos),
 	m_Angle(angle)
-	//m_uvScale(spriteSheet->GetOffset("HeartPiece"))
-	//m_uvOffset(spriteSheet->GetScale("LinkWalkLeft1"))
 {	
 }
 
@@ -23,9 +21,6 @@ void GameObject::Update(float deltaTime)
 
 void GameObject::Draw()
 {
-	m_uvScale = vec2(16, 16);
-	m_uvOffset = vec2(17, 112);
-
 	m_Mesh->drawMesh(m_Shader,m_Texture, m_Scale, m_Angle, m_Position, 1, m_uvScale, m_uvOffset);
 }
 

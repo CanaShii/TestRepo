@@ -2,6 +2,8 @@
 #include <fstream>
 #include "Game.h"
 #include "GameObject.h"
+#include "Player.h"
+#include "ScoreDisplay.h"
 #include "VirtualController.h"
 #include <vector>
 
@@ -22,6 +24,7 @@ Game::Game(fw::FWCore& core) : m_Framework(core)
 
     };
 
+   
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
@@ -49,7 +52,12 @@ Game::Game(fw::FWCore& core) : m_Framework(core)
 
     m_Textures["Default"] = new fw::Texture("Data/Textures/Zelda.png");
 
-    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), m_Pos, 0));
+    m_Score = new ScoreDisplay;
+    
+    m_Player = new Player(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(2,1), 0);
+
+    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(0, 0), 0));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(-4, 2), 0));
 };
 
 Game::~Game()
@@ -76,7 +84,16 @@ Game::~Game()
         delete it.second;
     }
 
+    for (auto it : m_Textures)
+    {
+        delete it.second;
+    }
+
+    delete m_Score;
+
     delete m_pImGuiManager;
+
+    delete m_Player;
     
 }
 
@@ -91,6 +108,7 @@ void Game::StartFrame(float deltaTime)
 void Game::OnEvent(fw::FWEvent* event)
 {
     m_pControllers[0]->OnEvent(event);
+    m_Player->OnEvent(event);
 }
 
 void Game::Update(float deltaTime)
@@ -99,16 +117,7 @@ void Game::Update(float deltaTime)
     {
         m_GameObjects[i]->Update(deltaTime);
     }
-
-    if (m_pControllers[0]->IsHeld(VirtualController::Action::Left))
-    {
-        m_Pos.X -= deltaTime;
-    }
-
-    if (m_pControllers[0]->IsHeld(VirtualController::Action::Right))
-    {
-        m_Pos.X += deltaTime;
-    }
+    m_Player->Update(deltaTime);
 }
 
 void Game::Draw()
@@ -121,7 +130,8 @@ void Game::Draw()
     {
         m_GameObjects[i]->Draw();
     }
-
+    m_Player->Draw();
+    m_Score->Draw();
     m_pImGuiManager->EndFrame();
 }
 

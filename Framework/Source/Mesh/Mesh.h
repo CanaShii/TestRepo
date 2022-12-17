@@ -25,7 +25,8 @@ namespace fw {
    {
        GLPOINTS,
 	   GLLINES,
-       GLTRIANGLE
+       GLTRIANGLE,
+	   GLTRIANGLE_FAN
    };
 
 

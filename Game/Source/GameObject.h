@@ -4,7 +4,6 @@
 #include "DataType.h"
 #include <Framework.h>
 
-
 class GameObject
 {
 public:
@@ -23,7 +22,6 @@ protected:
 	fw::Mesh* m_Mesh = nullptr;
 	fw::vec2 m_uvScale = { 0.0f, 0.0f };
 	fw::vec2 m_uvOffset = { 0.0f, 0.0f };
-	fw::SpriteSheet* spriteSheet;
 	fw::ShaderProgram* m_Shader = nullptr;
 	fw::Texture* m_Texture = nullptr;
 	float m_Angle = 1.0f;
