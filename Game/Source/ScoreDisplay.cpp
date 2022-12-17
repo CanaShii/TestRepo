@@ -15,15 +15,15 @@
         m_Meshes["Triangle"] = new fw::Mesh(values, fw::PrimitiveTypes::GLTRIANGLE_FAN);
 
         m_Textures["Zero"] = new fw::Texture("Data/Textures/Zero.png");
-        /*m_Textures["One"] = new fw::Texture("Data/Textures/Number1.png");
-        m_Textures["Two"] = new fw::Texture("Data/Textures/Number2.png");
-        m_Textures["Three"] = new fw::Texture("Data/Textures/Number3.png");
-        m_Textures["Four"] = new fw::Texture("Data/Textures/Number4.png");
-        m_Textures["Five"] = new fw::Texture("Data/Textures/Number5.png");
-        m_Textures["Six"] = new fw::Texture("Data/Textures/Number6.png");
-        m_Textures["Seven"] = new fw::Texture("Data/Textures/Number7.png");
-        m_Textures["Eight"] = new fw::Texture("Data/Textures/Number8.png");
-        m_Textures["Nine"] = new fw::Texture("Data/Textures/Number9.png");*/
+        m_Textures["One"] = new fw::Texture("Data/Textures/One.png");
+        m_Textures["Two"] = new fw::Texture("Data/Textures/Two.png");
+        m_Textures["Three"] = new fw::Texture("Data/Textures/Three.png");
+        m_Textures["Four"] = new fw::Texture("Data/Textures/Four.png");
+        m_Textures["Five"] = new fw::Texture("Data/Textures/Five.png");
+        m_Textures["Six"] = new fw::Texture("Data/Textures/Six.png");
+        m_Textures["Seven"] = new fw::Texture("Data/Textures/Seven.png");
+        m_Textures["Eight"] = new fw::Texture("Data/Textures/Eight.png");
+        m_Textures["Nine"] = new fw::Texture("Data/Textures/Nine.png");
 
 
 
@@ -48,7 +48,7 @@
     {
 
         m_Meshes["Triangle"]->drawMesh(m_Shader, m_Textures["Zero"], m_Scale, m_Angle, m_Position, 1, m_uvScale, m_uvOffset);
-
+        m_Meshes["Triangle"]->drawMesh(m_Shader, m_Textures["One"], m_Scale, m_Angle, m_Position - fw::vec2(1 , 0), 1, m_uvScale, m_uvOffset);
 
     }
 

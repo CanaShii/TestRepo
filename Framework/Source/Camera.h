@@ -10,12 +10,15 @@ namespace fw
 	public:
 		Camera();
 		~Camera();
-
+		 
+		void SetPosition(vec2 pos);
+		vec2 GetProjScale();
+		vec2 GetWinSize();
 
 	protected:
-		vec2 Position;
-		vec2 ProjScale;
-		vec2 WinSize;
+		vec2 position;
+		vec2 projScale;
+		vec2 winSize;
 	};
 
 

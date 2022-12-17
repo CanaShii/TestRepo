@@ -40,8 +40,6 @@ namespace fw {
 
 	   void SetupUniform2f(ShaderProgram* shader, const char* name, vec2& value);
 	   void SetupUniform1f(ShaderProgram* shader, const char* name, float& value);
-	   void SetupUVOffsetAndScale(vec2 uvO, vec2 uvS);
-	   void SetupCamera(vec2 CamP, vec2 ProjS);
 
 	   void drawMesh(ShaderProgram* shader,fw::Texture* texture, vec2 scale, float angle, vec2 pos, float aRatio, vec2 uvScale, vec2 uvOffset);
 
