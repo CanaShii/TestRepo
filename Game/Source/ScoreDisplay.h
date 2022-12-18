@@ -5,6 +5,7 @@
 	class Mesh;
 	class Texture;
 	class ShaderProgram;
+	class fw::Camera;
 
 	class ScoreDisplay
 	{
@@ -24,7 +25,8 @@
 		fw::vec2 m_uvOffset = { 256.0f, 128.0f };
 		fw::ShaderProgram* m_Shader = nullptr;
 		std::map<std::string, fw::Mesh*> m_Meshes;
-		std::map<std::string, fw::Texture*> m_Textures;
+		std::map<int, fw::Texture*> m_Textures;
+		fw::Camera* m_Camera;
 		float m_Angle = 0.0f;
 		int m_Score = 0;
 

@@ -3,6 +3,7 @@
 #include "Utility/ShaderProgram.h"
 #include "Math/vec2.h"
 #include "Mesh/Texture.h"
+#include "Camera.h"
 #include "../../Libraries/imgui/imgui.h"
 
 
@@ -36,7 +37,7 @@ void fw::Mesh::SetupUniform1f(ShaderProgram* shader, const char* name, float& va
 
 }
 
-void fw::Mesh::drawMesh(ShaderProgram* shader, fw::Texture* texture, vec2 scale, float angle, vec2 pos, float aRatio, vec2 uvScale, vec2 uvOffset)
+void fw::Mesh::drawMesh(ShaderProgram* shader, fw::Texture* texture, vec2 scale, float angle, vec2 pos, float aRatio, vec2 uvScale, vec2 uvOffset, fw::Camera* camera)
 {
     glUseProgram(shader->GetProgram());
 
@@ -49,8 +50,8 @@ void fw::Mesh::drawMesh(ShaderProgram* shader, fw::Texture* texture, vec2 scale,
     SetupUniform2f(shader, "u_Offset", pos);
     SetupUniform2f(shader, "u_uvScale", vec2(uvScale.X / 256.0f, uvScale.Y / 128.0f)); // / 256.0f / 128.0f
     SetupUniform2f(shader, "u_uvOffset", vec2(uvOffset.X / 256.0f, uvOffset.Y / 128.0f));
-    SetupUniform2f(shader, "u_CameraPosition", vec2(0.0f, 0.0f));
-    SetupUniform2f(shader, "u_ProjectionScale", vec2(0.1f, 0.1f));
+    SetupUniform2f(shader, "u_CameraPosition", vec2(camera->GetCamPosition().X, camera->GetCamPosition().Y));
+    SetupUniform2f(shader, "u_ProjectionScale", vec2(camera->GetProjScale().X, camera->GetProjScale().Y));
 
     int textureUnitNumber = 0;
     glActiveTexture(GL_TEXTURE0 + textureUnitNumber);

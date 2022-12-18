@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "GameObject.h"
 #include "Player.h"
+#include "Camera.h"
 #include "ScoreDisplay.h"
 #include "VirtualController.h"
 #include <vector>
@@ -33,16 +34,6 @@ Game::Game(fw::FWCore& core) : m_Framework(core)
     {
         m_pControllers[i] = new VirtualController();
     }
-
-    //std::string filename = "Zelda.json";
-
-    //std::ifstream f("Zelda.json");
-    //json data = json::parse(f);
-
-    //data[filename];
-
-    //data["Size.x"] = 16.0f;
-    //data["Size.y"] = 16.0f;
    
     m_Shaders["Basic"] = new fw::ShaderProgram("Data/Shaders/Basic.vert", "Data/Shaders/Basic.frag");
 
@@ -53,11 +44,19 @@ Game::Game(fw::FWCore& core) : m_Framework(core)
     m_Textures["Default"] = new fw::Texture("Data/Textures/Zelda.png");
 
     m_Score = new ScoreDisplay;
-    
-    m_Player = new Player(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(2,1), 0);
 
-    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(0, 0), 0));
-    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(-4, 2), 0));
+    m_Camera = new fw::Camera;
+
+    m_Player = new Player(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(2,1), 0, m_Camera);
+
+    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(4, 4), 0, m_Camera));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(4, -4), 0, m_Camera));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(-3, 4), 0, m_Camera));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(-3, -4), 0, m_Camera));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(6, 3), 0, m_Camera));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(6, -3), 0, m_Camera));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(8, 2), 0, m_Camera));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(8, -2), 0, m_Camera));
 };
 
 Game::~Game()
@@ -94,7 +93,8 @@ Game::~Game()
     delete m_pImGuiManager;
 
     delete m_Player;
-    
+
+    delete m_Camera;
 }
 
 void Game::StartFrame(float deltaTime)
@@ -118,6 +118,8 @@ void Game::Update(float deltaTime)
         m_GameObjects[i]->Update(deltaTime);
     }
     m_Player->Update(deltaTime);
+    m_Camera->SetPosition(m_Player->GetPosition());
+    m_Score->SetScore(m_Player->GetPosition().X);
 }
 
 void Game::Draw()

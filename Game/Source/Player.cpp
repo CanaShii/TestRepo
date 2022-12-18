@@ -4,8 +4,8 @@
 #include <Framework.h>
 
 
-Player::Player(fw::Mesh* mesh, fw::ShaderProgram* shader, fw::Texture* texture, fw::vec2 scale, fw::vec2 pos, float angle)
-    : GameObject(mesh, shader, texture, scale, pos, angle)
+Player::Player(fw::Mesh* mesh, fw::ShaderProgram* shader, fw::Texture* texture, fw::vec2 scale, fw::vec2 pos, float angle, fw::Camera* camera)
+    : GameObject(mesh, shader, texture, scale, pos, angle, camera)
 
 {
     m_SpriteSheet = new fw::SpriteSheet;
@@ -30,6 +30,11 @@ Player::~Player()
 void Player::OnEvent(fw::FWEvent* event)
 {
     m_pControllers[0]->OnEvent(event);
+}
+
+vec2 Player::GetPosition()
+{
+    return m_Position;
 }
 
 void Player::Update(float deltaTime)

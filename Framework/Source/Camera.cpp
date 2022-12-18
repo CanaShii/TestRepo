@@ -2,28 +2,35 @@
 #include "Camera.h"
 #include "../../Game/Source/DataType.h"
 
-fw::Camera::Camera()
+namespace fw
 {
+    Camera::Camera() 
+    {
 
+    }
 
+    Camera::~Camera()
+    {
+    }
 
-}
+    void Camera::SetPosition(vec2 pos)
+    {
+        position = pos;
+    }
 
-fw::Camera::~Camera()
-{
-}
+    vec2 Camera::GetProjScale()
+    {
+        return projScale;
+    }
 
-void fw::Camera::SetPosition(vec2 pos)
-{
-    position = pos;
-}
+    vec2 Camera::GetWinSize()
+    {
+        return winSize;
+    }
 
-vec2 fw::Camera::GetProjScale()
-{
-    return projScale;
-}
-
-vec2 fw::Camera::GetWinSize()
-{
-    return winSize;
+    vec2 Camera::GetCamPosition()
+    {
+        
+        return position;
+    }
 }

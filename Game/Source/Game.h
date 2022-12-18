@@ -8,6 +8,7 @@ class VirtualController;
 class GameObject;
 class Player;
 class ScoreDisplay;
+class fw::Camera;
 
 class Game : public fw::GameCore
 {
@@ -34,6 +35,7 @@ protected:
 
     Player* m_Player = nullptr;
     ScoreDisplay* m_Score = nullptr;
+    fw::Camera* m_Camera = nullptr;
 
     float m_ElapsedTime = 0.0f;
     float m_Color[4] = { 1, 1, 1, 1 };
