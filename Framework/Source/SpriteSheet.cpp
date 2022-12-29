@@ -12,11 +12,14 @@ namespace fw
         std::ifstream f("Data/Textures/Zelda.json");
         json data = json::parse(f);
         json spriteSheetData = data["sprites"];
+        json SizeData = data["size"];
+        jsonSize = vec2(SizeData[0], SizeData[1]);
 
         for (int i = 0; i < spriteSheetData.size(); i++)
         {
             json offset;
             json scale;
+            
             json temp;
             temp = spriteSheetData[i];
 
@@ -27,7 +30,7 @@ namespace fw
             spritedetails[name] = new SpriteDetails();
             spritedetails[name]->uvOffset = vec2(offset[0], offset[1]);
             spritedetails[name]->uvScale = vec2(scale[0], scale[1]);
-        }
+        } 
     }
 
     SpriteSheet::~SpriteSheet()
@@ -46,6 +49,10 @@ namespace fw
     vec2 SpriteSheet::GetOffset(std::string s)
     {
         return spritedetails[s]->uvOffset;
+    }
+    vec2 SpriteSheet::GetJsonSize()
+    {
+        return jsonSize;
     }
 }
 

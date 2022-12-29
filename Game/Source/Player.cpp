@@ -15,6 +15,7 @@ Player::Player(fw::Mesh* mesh, fw::ShaderProgram* shader, fw::Texture* texture, 
     }
     m_uvOffset = m_SpriteSheet->GetOffset("LinkWalkDown1");
     m_uvScale = m_SpriteSheet->GetScale("LinkWalkDown1");
+    m_jsonSize = m_SpriteSheet->GetJsonSize();
 }
 
 Player::~Player()

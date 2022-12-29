@@ -18,10 +18,11 @@ public:
 
 protected:
 	fw::vec2 m_Position = { 0.0f , 0.0f };
-	fw::vec2 m_Scale = { 1.0f , 1.0f };
+	fw::vec2 m_Scale = { 0.5f , 0.5f };
 	fw::Mesh* m_Mesh = nullptr;
 	fw::vec2 m_uvScale = { 8.0f, 10.0f };
 	fw::vec2 m_uvOffset = { 0.0f, 1.0f };
+	fw::vec2 m_jsonSize = { 256.0f , 128.0f };
 	fw::ShaderProgram* m_Shader = nullptr;
 	fw::Texture* m_Texture = nullptr;
 	fw::Camera* m_Camera = nullptr;

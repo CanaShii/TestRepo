@@ -42,7 +42,7 @@ namespace fw {
 	   void SetupUniform2f(ShaderProgram* shader, const char* name, vec2& value);
 	   void SetupUniform1f(ShaderProgram* shader, const char* name, float& value);
 
-	   void drawMesh(ShaderProgram* shader,fw::Texture* texture, vec2 scale, float angle, vec2 pos, float aRatio, vec2 uvScale, vec2 uvOffset, fw::Camera* camera);
+	   void drawMesh(ShaderProgram* shader,fw::Texture* texture, vec2 scale, float angle, vec2 pos, float aRatio, vec2 uvScale, vec2 uvOffset, fw::Camera* camera, vec2 jsonSize);
 
    protected:
 	

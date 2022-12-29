@@ -23,6 +23,7 @@
 		fw::vec2 m_Scale = { 0.5f , 0.5f };
 		fw::vec2 m_uvScale = { 256.0f, 128.0f };
 		fw::vec2 m_uvOffset = { 256.0f, 128.0f };
+		fw::vec2 m_jsonSize = { 256.0f , 128.0f };
 		fw::ShaderProgram* m_Shader = nullptr;
 		std::map<std::string, fw::Mesh*> m_Meshes;
 		std::map<int, fw::Texture*> m_Textures;

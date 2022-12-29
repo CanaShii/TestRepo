@@ -119,7 +119,7 @@ void Game::Update(float deltaTime)
     }
     m_Player->Update(deltaTime);
     m_Camera->SetPosition(m_Player->GetPosition());
-    m_Score->SetScore(m_Player->GetPosition().X);
+    m_Score->SetScore(m_Player->GetPosition().X * 1000); //<- Adjust here to see other digits slower
 }
 
 void Game::Draw()

@@ -14,7 +14,11 @@
 
         m_Camera = new fw::Camera;
 
-        m_Meshes["Triangle"] = new fw::Mesh(values, fw::PrimitiveTypes::GLTRIANGLE_FAN);
+        m_Meshes["FirstDigit"] = new fw::Mesh(values, fw::PrimitiveTypes::GLTRIANGLE_FAN);
+        m_Meshes["SecondDigit"] = new fw::Mesh(values, fw::PrimitiveTypes::GLTRIANGLE_FAN);
+        m_Meshes["ThirdDigit"] = new fw::Mesh(values, fw::PrimitiveTypes::GLTRIANGLE_FAN);
+        m_Meshes["FourthDigit"] = new fw::Mesh(values, fw::PrimitiveTypes::GLTRIANGLE_FAN);
+        m_Meshes["FifthDigit"] = new fw::Mesh(values, fw::PrimitiveTypes::GLTRIANGLE_FAN);
 
         m_Textures[0] = new fw::Texture("Data/Textures/Zero.png");
         m_Textures[1] = new fw::Texture("Data/Textures/One.png");
@@ -44,86 +48,89 @@
         }
 
         delete m_Shader;
+
+        delete m_Camera;
     }
 
     void ScoreDisplay::Draw()
     {
         std::string scoreString = std::to_string(m_Score);
-       
+
         int numDigits = scoreString.length();
 
-        int totalWidth = numDigits * 9;
-
-        if (m_Position.X < 0 || m_Position.X + totalWidth > 1280)
-        {
-            m_Position.X = 1280 - totalWidth;
-        }
+        int digitScore = 0;
 
         for (int i = 0; i < numDigits; i++)
         {
-
             char digit = scoreString[i];
-
             int digitNumber = digit - '0';
 
-            m_Position.X += 1 * i;
-            if (numDigits > 1)
+            if (digitNumber < 0)
             {
-                if (m_Score >= 10)
-                {
-                    
-                    digitNumber *= 10;
-                }
-
-                m_Meshes["Triangle"]->drawMesh(m_Shader, m_Textures[digitNumber /10], m_Scale, m_Angle, m_Position, 1, m_uvScale, m_uvOffset, m_Camera);
-
-                m_Position.X -= 1 * i;
-                if (m_Score >= 10)
-                {
-
-                    digitNumber %= 10;
-                }
-                if (digitNumber == 0)
-                {
-                    digitNumber += 1;
-                }
-                if (m_Score == 20)
-                {
-                    digitNumber += 1;
-                }
-                if (m_Score == 30)
-                {
-                    digitNumber += 1;
-                }
-                if (m_Score == 40)
-                {
-                    digitNumber += 1;
-                }
-                if (m_Score == 50)
-                {
-                    digitNumber += 1;
-                }
-                if (m_Score == 60)
-                {
-                    digitNumber += 1;
-                }
-                if (m_Score == 70)
-                {
-                    digitNumber += 1;
-                }
-                if (m_Score == 80)
-                {
-                    digitNumber += 1;
-                }
-                if (m_Score == 90)
-                {
-                    digitNumber += 1;
-                }
-
-               
+                digitNumber *= -1;
             }
-            m_Meshes["Triangle"]->drawMesh(m_Shader, m_Textures[digitNumber], m_Scale, m_Angle, m_Position, 1, m_uvScale, m_uvOffset, m_Camera);
-            
+
+            m_Meshes["FirstDigit"]->drawMesh(m_Shader, m_Textures[digitNumber], m_Scale, m_Angle, m_Position + fw::vec2((numDigits - i - 1) * 9, 0), 1, m_uvScale, m_uvOffset, m_Camera, m_jsonSize);
+        }
+        if (m_Score >= 10 || m_Score <= -10)
+        {
+            digitScore = m_Score;
+            if (digitScore < 0)
+            {
+                digitScore *= -1;
+            }
+            while (digitScore >= 10000)
+            {
+                digitScore -= 10000;
+            }
+            while (digitScore >= 1000)
+            {
+                digitScore -= 1000;
+            }
+            while (digitScore >= 100)
+            {
+                digitScore -=100;
+            }
+            m_Meshes["SecondDigit"]->drawMesh(m_Shader, m_Textures[digitScore / 10], m_Scale, m_Angle, m_Position - fw::vec2(1.f, 0.0f), 1, m_uvScale, m_uvOffset, m_Camera, m_jsonSize);
+        }
+        if (m_Score >= 100 || m_Score <= -100)
+        {
+            digitScore = m_Score;
+            if (digitScore < 0)
+            {
+                digitScore *= -1;
+            }
+            while (digitScore >= 10000)
+            {
+                digitScore -= 10000;
+            }
+            while (digitScore >= 1000)
+            {
+                digitScore -= 1000;
+            }
+            m_Meshes["ThirdDigit"]->drawMesh(m_Shader, m_Textures[digitScore / 100], m_Scale, m_Angle, m_Position - fw::vec2(2.f, 0.0f), 1, m_uvScale, m_uvOffset, m_Camera, m_jsonSize);
+        }
+        if (m_Score >= 1000 || m_Score <= -1000)
+        {
+            digitScore = m_Score;
+            if (digitScore < 0)
+            {
+                digitScore *= -1;
+            }
+            while (digitScore >= 10000)
+            {
+                digitScore -= 10000;
+            }
+            m_Meshes["FourthDigit"]->drawMesh(m_Shader, m_Textures[digitScore / 1000], m_Scale, m_Angle, m_Position - fw::vec2(3.f, 0.0f), 1, m_uvScale, m_uvOffset, m_Camera, m_jsonSize);
+        }
+        if (m_Score >= 10000 || m_Score <= -10000)
+        {
+            digitScore = m_Score;
+            if (digitScore < 0)
+            {
+                digitScore *= -1;
+            }
+            m_Meshes["FifthDigit"]->drawMesh(m_Shader, m_Textures[digitScore / 10000], m_Scale, m_Angle, m_Position - fw::vec2(4.f, 0.0f), 1, m_uvScale, m_uvOffset, m_Camera, m_jsonSize);
         }
 
     }

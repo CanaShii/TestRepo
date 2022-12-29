@@ -19,9 +19,11 @@ namespace fw
 
 		vec2 GetScale(std::string s);
 		vec2 GetOffset(std::string s);
+		vec2 GetJsonSize();
 
 	protected:
 		std::map<std::string, SpriteDetails*> spritedetails;
+		vec2 jsonSize;
 	};
 
 

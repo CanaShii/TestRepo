@@ -22,7 +22,7 @@ void GameObject::Update(float deltaTime)
 
 void GameObject::Draw()
 {
-	m_Mesh->drawMesh(m_Shader,m_Texture, m_Scale, m_Angle, m_Position, 1, m_uvScale, m_uvOffset, m_Camera);
+	m_Mesh->drawMesh(m_Shader,m_Texture, m_Scale, m_Angle, m_Position, 1, m_uvScale, m_uvOffset, m_Camera, m_jsonSize);
 }
 
 
