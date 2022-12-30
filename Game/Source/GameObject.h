@@ -18,7 +18,7 @@ public:
 
 protected:
 	fw::vec2 m_Position = { 0.0f , 0.0f };
-	fw::vec2 m_Scale = { 0.5f , 0.5f };
+	fw::vec2 m_Scale = { 0.0f , 0.0f };
 	fw::Mesh* m_Mesh = nullptr;
 	fw::vec2 m_uvScale = { 8.0f, 10.0f };
 	fw::vec2 m_uvOffset = { 0.0f, 1.0f };

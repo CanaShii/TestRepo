@@ -9,6 +9,7 @@ class GameObject;
 class Player;
 class ScoreDisplay;
 class fw::Camera;
+class TileMap;
 
 class Game : public fw::GameCore
 {
@@ -36,6 +37,7 @@ protected:
     Player* m_Player = nullptr;
     ScoreDisplay* m_Score = nullptr;
     fw::Camera* m_Camera = nullptr;
+    TileMap* m_TileMap = nullptr;
 
     float m_ElapsedTime = 0.0f;
     float m_Color[4] = { 1, 1, 1, 1 };

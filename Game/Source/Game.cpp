@@ -6,6 +6,7 @@
 #include "Camera.h"
 #include "ScoreDisplay.h"
 #include "VirtualController.h"
+#include "TileMap.h"
 #include <vector>
 
 Game::Game(fw::FWCore& core) : m_Framework(core)
@@ -47,16 +48,18 @@ Game::Game(fw::FWCore& core) : m_Framework(core)
 
     m_Camera = new fw::Camera;
 
+    m_TileMap = new TileMap(m_Camera);
+
     m_Player = new Player(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(2,1), 0, m_Camera);
 
-    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(4, 4), 0, m_Camera));
-    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(4, -4), 0, m_Camera));
-    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(-3, 4), 0, m_Camera));
-    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(-3, -4), 0, m_Camera));
-    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(6, 3), 0, m_Camera));
-    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(6, -3), 0, m_Camera));
-    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(8, 2), 0, m_Camera));
-    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(8, -2), 0, m_Camera));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.3, 0.3), vec2(5, 5), 0, m_Camera));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.3, 0.3), vec2(5, -5), 0, m_Camera));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.3, 0.3), vec2(-5, 5), 0, m_Camera));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.3, 0.3), vec2(-5, -5), 0, m_Camera));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.3, 0.3), vec2(0, 7), 0, m_Camera));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.3, 0.3), vec2(0, -7), 0, m_Camera));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.3, 0.3), vec2(7, 0), 0, m_Camera));
+    m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.3, 0.3), vec2(-7, 0), 0, m_Camera));
 };
 
 Game::~Game()
@@ -95,6 +98,8 @@ Game::~Game()
     delete m_Player;
 
     delete m_Camera;
+
+    delete m_TileMap;
 }
 
 void Game::StartFrame(float deltaTime)
@@ -128,6 +133,7 @@ void Game::Draw()
     glClearColor(0, 0, 0.2f, 1);
     glClear(GL_COLOR_BUFFER_BIT);
 
+    m_TileMap->Draw();
     for (int i = 0; i < m_GameObjects.size(); i++)
     {
         m_GameObjects[i]->Draw();
