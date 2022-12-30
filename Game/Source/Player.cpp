@@ -40,54 +40,62 @@ vec2 Player::GetPosition()
 
 void Player::Update(float deltaTime)
 {
-    m_timer += deltaTime;
+    if (m_timer < deltaTime)
+    {
+        if (m_fixer == 0 || m_timer > deltaTime)
+        {
+            m_timer = deltaTime + 0.000250;
+        }
+    }
     if (m_pControllers[0]->IsHeld(VirtualController::Action::Left))
     {
+
        m_Position.X -= deltaTime + 0.0005;
-       if (m_timer >= 0.000250)
+       if (deltaTime > m_timer || m_fixer == 1)
        {
-           m_timer = 0;
-           
+          
            m_uvOffset = m_SpriteSheet->GetOffset("LinkWalkLeft2");
            m_uvScale = m_SpriteSheet->GetScale("LinkWalkLeft2");
+           m_fixer = 0;
        }
        else
        {
            m_uvOffset = m_SpriteSheet->GetOffset("LinkWalkLeft1");
            m_uvScale = m_SpriteSheet->GetScale("LinkWalkLeft1");
+           m_fixer++;
        }
     }
-
+    
     if (m_pControllers[0]->IsHeld(VirtualController::Action::Right))
     {
         m_Position.X += deltaTime + 0.0005;
-        if (m_timer >= 0.000250)
+        if (deltaTime > m_timer || m_fixer == 1)
         {
-            m_timer = 0;
-
             m_uvOffset = m_SpriteSheet->GetOffset("LinkWalkRight2");
             m_uvScale = m_SpriteSheet->GetScale("LinkWalkRight2");
+            m_fixer = 0;
         }
         else
         {
             m_uvOffset = m_SpriteSheet->GetOffset("LinkWalkRight1");
             m_uvScale = m_SpriteSheet->GetScale("LinkWalkRight1");
+            m_fixer ++;
         }
     }
     if (m_pControllers[0]->IsHeld(VirtualController::Action::Up))
     {
         m_Position.Y += deltaTime + 0.0005;
-        if (m_timer >= 0.000250)
+        if (deltaTime > m_timer || m_fixer == 1)
         {
-            m_timer = 0;
-
             m_uvOffset = m_SpriteSheet->GetOffset("LinkWalkUp2");
             m_uvScale = m_SpriteSheet->GetScale("LinkWalkUp2");
+            m_fixer = 0;
         }
         else
         {
             m_uvOffset = m_SpriteSheet->GetOffset("LinkWalkUp1");
             m_uvScale = m_SpriteSheet->GetScale("LinkWalkUp1");
+            m_fixer++;
         }
         
     }
@@ -95,17 +103,17 @@ void Player::Update(float deltaTime)
     if (m_pControllers[0]->IsHeld(VirtualController::Action::Down))
     {
         m_Position.Y -= deltaTime + 0.0005;
-        if (m_timer >= 0.000250)
+        if (deltaTime > m_timer || m_fixer == 1)
         {
-            m_timer = 0;
-
             m_uvOffset = m_SpriteSheet->GetOffset("LinkWalkDown2");
             m_uvScale = m_SpriteSheet->GetScale("LinkWalkDown2");
+            m_fixer = 0;
         }
         else
         {
             m_uvOffset = m_SpriteSheet->GetOffset("LinkWalkDown1");
             m_uvScale = m_SpriteSheet->GetScale("LinkWalkDown1");
+            m_fixer++;
         }
     }
 }

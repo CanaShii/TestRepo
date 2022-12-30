@@ -1,6 +1,12 @@
 #pragma once
 #include "GameObject.h"
 
+enum class EnemyState
+{
+	Idle,
+	Walking,
+};
+
 class Enemy : public GameObject
 {
 public:
@@ -12,6 +18,6 @@ public:
 protected:
 	
 	fw::SpriteSheet* m_SpriteSheet;
-
+	int m_State;
 };
 

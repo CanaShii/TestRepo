@@ -9,9 +9,10 @@ class fw::Camera;
 
 enum class TileType
 {
-	Grass, // 0
-	Sand, // 1
-	NumTypes, // 2
+	Grass, 
+	Sand, 
+	Brick, 
+	NumTypes, 
 };
 
 struct TileProperties
@@ -28,6 +29,7 @@ public:
 	~TileMap();
 
 	virtual void Draw();
+
 protected:
 	std::map < std::string, int> m_TileTypes;
 	std::map < std::string, TileProperties*> m_TileProperties;

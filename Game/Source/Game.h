@@ -7,6 +7,7 @@ class fw::Mesh;
 class VirtualController;
 class GameObject;
 class Player;
+class Enemy;
 class ScoreDisplay;
 class fw::Camera;
 class TileMap;
@@ -35,6 +36,7 @@ protected:
     std::vector<GameObject*> m_GameObjects;
 
     Player* m_Player = nullptr;
+    Enemy* m_Enemy = nullptr;
     ScoreDisplay* m_Score = nullptr;
     fw::Camera* m_Camera = nullptr;
     TileMap* m_TileMap = nullptr;

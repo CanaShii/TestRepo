@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "GameObject.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "Camera.h"
 #include "ScoreDisplay.h"
 #include "VirtualController.h"
@@ -51,6 +52,9 @@ Game::Game(fw::FWCore& core) : m_Framework(core)
     m_TileMap = new TileMap(m_Camera);
 
     m_Player = new Player(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(2,1), 0, m_Camera);
+
+    m_Enemy = new Enemy(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.5, 0.5), vec2(3, 5), 0, m_Camera);
+
 
     m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.3, 0.3), vec2(5, 5), 0, m_Camera));
     m_GameObjects.push_back(new GameObject(m_Meshes["Triangle"], m_Shaders["Texture"], m_Textures["Default"], vec2(0.3, 0.3), vec2(5, -5), 0, m_Camera));
@@ -123,6 +127,7 @@ void Game::Update(float deltaTime)
         m_GameObjects[i]->Update(deltaTime);
     }
     m_Player->Update(deltaTime);
+    m_Enemy->Update(deltaTime);
     m_Camera->SetPosition(m_Player->GetPosition());
     m_Score->SetScore(m_Player->GetPosition().X * 1000); //<- Adjust here to see other digits slower
 }
@@ -139,6 +144,7 @@ void Game::Draw()
         m_GameObjects[i]->Draw();
     }
     m_Player->Draw();
+    m_Enemy->Draw();
     m_Score->Draw();
     m_pImGuiManager->EndFrame();
 }

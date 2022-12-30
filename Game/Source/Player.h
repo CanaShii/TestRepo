@@ -22,6 +22,7 @@ protected:
 	
 	VirtualController* m_pControllers[4] = { nullptr };
 	fw::SpriteSheet* m_SpriteSheet;
-	float m_timer = 0;
+	float m_timer = 0.0f;
+	int m_fixer = 0;
 };
 
